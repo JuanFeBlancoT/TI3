@@ -12,6 +12,7 @@ public class Main{
 		//atributes
 		boolean menu = true;
 		int numEmployees = 0;
+		int numTeams = 0;
 		
 		//Initialize Club
 		Club club1 = createClub();
@@ -23,8 +24,12 @@ public class Main{
 			System.out.println("******** MENU ********"+
 			"\n 1. Contratar empleados"+
 			"\n 2. Despedir empleados"+
+			"\n 3. Crear equipo"+
+			"\n 4. Agregar jugadores a los equipos"+
+			"\n 5. Agregar alineacion a un equipo"+
 			"\n 8. Mostrar empleados"+
-			"\n 9. Salir");
+			"\n 9. Mostrar equipos"+
+			"\n 10. Salir");
 			
 			int option = sc.nextInt(); sc.nextLine();
 			
@@ -33,10 +38,33 @@ public class Main{
 					contractEmployee(club1);
 					numEmployees++;
 			break;
+			case 2:
+					fireEmployee(club1);
+					numEmployees--;
+			break;
+			case 3:
+					if(numTeams<2){
+						createTeam(club1);
+					numTeams++;
+					}else{
+						System.out.println("	** CANT ADD MORE TEAMS. LIMIT REACHED **");
+					}
+					
+			break;
+			case 4:
+					addPlayerToTeam(club1);
+			break;
+			case 5:
+					addAlignment(club1);
+			break;
+			
 			case 8:
 					showEmployees(club1, numEmployees);
 			break;
-				case 9:
+			case 9:
+					showTeams(club1, numTeams);
+			break;
+			case 10:
 					menu = false;
 			break;
 
@@ -300,15 +328,37 @@ public class Main{
 		return choosen;
 	}
 	
-	
-	
-	/*public void showEmployee(Club clubx){
-		String message = "";
-		for(int i=0; i<5;i++){
-			message = clubx.showEmployee(i);
-			System.out.print("\n"+message);
+	public static void createTeam(Club clubx){
+		System.out.print("Inserta el nombre del equipo: ");
+		String teamName = sc.nextLine();
+		boolean takenTeamName = clubx.findTeam(teamName);
+		if(takenTeamName){
+			System.out.print(" Taken team name");
+		}else{
+			clubx.createTeam(teamName);
 		}
-	}*/
+		
+	}
+	
+	public static void addPlayerToTeam(Club clubx){
+		System.out.print("Inserta el nombre del equipo: ");
+		String teamName = sc.nextLine();
+		boolean existingTeam = clubx.findTeam(teamName);
+		if(existingTeam){
+				System.out.print("Inserta el id del empleado al que quieres agregar: ");
+				String playerId = sc.nextLine();
+				boolean existingId = clubx.findId(playerId);
+				if(existingId){
+					clubx.addEmployeeToTeam(teamName, playerId);
+				}else{
+					System.out.print("El empleado no se encuentra registrado");
+				}
+		}else{
+			
+			System.out.print("El equipo no existe");
+		}
+		
+	}
 	
 	public static void showEmployees(Club clubx, int numEmployees){
 		String message = "";
@@ -318,8 +368,78 @@ public class Main{
 		}
 	}
 	
+	public static void showTeams(Club clubx, int numTeams){
+		String message = "";
+		for(int i=0; i<numTeams;i++){
+			message = clubx.showTeam(i);
+			System.out.print("\n"+message+"\n");
+		}
+	}
+	
 	public static boolean findId(Club clubx, String id){
 		boolean takenId = clubx.findId(id);
 		return takenId;
+	}
+	
+	public static boolean findTeam(Club clubx, String teamName){
+		boolean takenName = clubx.findTeam(teamName);
+		return takenName;
+	}
+	
+	public static boolean findEmployeeOnTeam(Club clubx, String teamName, String playerId){
+		boolean alreadyIn = clubx.findEmployeeOnTeam(teamName, playerId);
+		return alreadyIn;
+	}
+	
+	public static void addAlignment(Club clubx){
+		
+		System.out.print("Inserta el nombre del equipo al que deseas agregar una alineacion: ");
+		String teamName = sc.nextLine();
+		
+		boolean existingTeam = clubx.findTeam(teamName);
+		if(existingTeam){
+			System.out.print("Inserta la fecha de la alineacion: ");
+			String dateA = sc.nextLine();
+			String tactic="";
+			
+			System.out.println("Inserta la tactica: "+
+			"\n 1. Posesion"+
+			"\n 2. Contraataque"+
+			"\n 3. Presion alta"+
+			"\n 4. Por defecto");
+			
+			int option;
+			option = sc.nextInt(); sc.nextLine();
+			
+			while(option>4 || option<1){
+			System.out.println("Inserta la tactica: "+
+			"\n 1. Posesion"+
+			"\n 2. Contraataque"+
+			"\n 3. Presion alta"+
+			"\n 4. Por defecto");
+			
+			option = sc.nextInt();
+			}
+			
+			switch(option){
+				case 1:
+					tactic="POSESION";
+				break;
+				case 2:
+					tactic="CONTRAATAQUE";
+				break;
+				case 3:
+					tactic="PRESION_ALTA";
+				break;
+				case 4:
+					tactic="POR_DEFECTO";
+				break;
+			}
+			
+			clubx.addAlignment(teamName, dateA, tactic);
+		}else{
+			System.out.print(" El equipo no existe ");
+		}
+		
 	}
 }

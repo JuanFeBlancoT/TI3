@@ -20,12 +20,16 @@ public abstract class Employee{
 	}
 	
 	public String toString(){
-		String message = ("**** Employee ****"+
-		"\n ** Name: "+ name+ 
+		String message = ("**** Empleado ****"+
+		"\n ** Nombre: "+ name+ 
 		"\n ** Id: "+ id+
-		"\n ** Salary: "+ salary+
-		"\n ** State: "+ state);
+		"\n ** Salario: "+ salary+
+		"\n ** Stado: "+ state);
 		
 		return message;
+	}
+	
+	public String getName(){
+		return name;
 	}
 }

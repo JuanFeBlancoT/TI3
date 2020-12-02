@@ -22,10 +22,10 @@ public class Player extends Employee{
 		
 		String message=super.toString();
 
-		message+="\n ** Shirt number: "+ shirtNumber +
-		"\n ** Amount of goals: "+ goals +
-		"\n ** Evaluation avearage: "+ evaAvearage +
-		"\n ** Position: "+ position+"\n";
+		message+="\n ** Numero de camiseta: "+ shirtNumber +
+		"\n ** Cantidad de goles: "+ goals +
+		"\n ** Calificacion promedio: "+ evaAvearage +
+		"\n ** Posicion: "+ position+"\n";
 		
 		return message;
 	}

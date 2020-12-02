@@ -18,9 +18,9 @@ public class PrincipalCoach extends Coach{
 		
 		String message=super.toString();
 
-		message+="\n ** Number of teams: "+ numberTeams;
+		message+="\n ** Numero de equipos: "+ numberTeams;
 		
-		message+="\n ** Won championships: ";
+		message+="\n ** Campeonatos ganados: ";
 		for(int i=0; i<nChampionships;i++){
 			message+="\n	* " + championships[i];
 		}
@@ -28,4 +28,5 @@ public class PrincipalCoach extends Coach{
 		
 		return message;
 	}
+	
 }

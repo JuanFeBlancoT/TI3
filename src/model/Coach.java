@@ -14,7 +14,7 @@ public class Coach extends Employee{
 		
 		String message=super.toString();
 
-		message+="\n ** years of experience: "+ yearsXp;
+		message+="\n ** Anios de experiencia: "+ yearsXp;
 		
 		return message;
 	}

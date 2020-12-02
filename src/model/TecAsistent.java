@@ -24,7 +24,7 @@ public class TecAsistent extends Coach{
 
 		message+="\n ** Fue un jugador activo: "+ activedP;
 		
-		message+="\n ** Expertises: ";
+		message+="\n ** Experticias: ";
 		for(int i=0; i<listExpertise.length && listExpertise[i]!=null;i++){
 			message+="\n	* " + listExpertise[i];
 		}
