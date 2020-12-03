@@ -417,43 +417,49 @@ public class Main{
 		if(existingTeam){
 			System.out.print("Inserta la fecha de la alineacion: ");
 			String dateA = sc.nextLine();
-			String tactic="";
+			boolean existingDate = clubx.findAlignment(teamName, dateA);
 			
-			System.out.println("Inserta la tactica: "+
-			"\n 1. Posesion"+
-			"\n 2. Contraataque"+
-			"\n 3. Presion alta"+
-			"\n 4. Por defecto");
-			
-			int option;
-			option = sc.nextInt(); sc.nextLine();
-			
-			while(option>4 || option<1){
-			System.out.println("Inserta la tactica: "+
-			"\n 1. Posesion"+
-			"\n 2. Contraataque"+
-			"\n 3. Presion alta"+
-			"\n 4. Por defecto");
-			
-			option = sc.nextInt();sc.nextLine();
+			if(existingDate){
+				System.out.print("Esta fecha ya ha sido seleccionada. Escoge otra ");
+			}else{
+				String tactic="";
+				
+				System.out.println("Inserta la tactica: "+
+				"\n 1. Posesion"+
+				"\n 2. Contraataque"+
+				"\n 3. Presion alta"+
+				"\n 4. Por defecto");
+				
+				int option;
+				option = sc.nextInt(); sc.nextLine();
+				
+				while(option>4 || option<1){
+				System.out.println("Inserta la tactica: "+
+				"\n 1. Posesion"+
+				"\n 2. Contraataque"+
+				"\n 3. Presion alta"+
+				"\n 4. Por defecto");
+				
+				option = sc.nextInt();sc.nextLine();
+				}
+				
+				switch(option){
+					case 1:
+						tactic="POSESION";
+					break;
+					case 2:
+						tactic="CONTRAATAQUE";
+					break;
+					case 3:
+						tactic="PRESION_ALTA";
+					break;
+					case 4:
+						tactic="POR_DEFECTO";
+					break;
+				}
+				
+				clubx.addAlignment(teamName, dateA, tactic);
 			}
-			
-			switch(option){
-				case 1:
-					tactic="POSESION";
-				break;
-				case 2:
-					tactic="CONTRAATAQUE";
-				break;
-				case 3:
-					tactic="PRESION_ALTA";
-				break;
-				case 4:
-					tactic="POR_DEFECTO";
-				break;
-			}
-			
-			clubx.addAlignment(teamName, dateA, tactic);
 		}else{
 			System.out.print(" El equipo no existe ");
 		}
