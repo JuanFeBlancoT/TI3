@@ -5,10 +5,14 @@ import java.util.*;
 public class Club{
 	//constants
 	public final int MAX_TEAMS = 2;
+	public final int ROWSA = 7;
+	public final int COLSB = 6;
 	//Atributes
 	private String name;
 	private String fundationD;
 	private String nit;
+	private Player[][] changeRoomA;
+	private Player[][] changeRoomB;
 	//Relations
 	ArrayList <Employee> payroll;
 	private Team[] teams;
@@ -24,6 +28,8 @@ public class Club{
 		this.nit = nit;
 		payroll = new ArrayList <Employee>();
 		teams = new Team[MAX_TEAMS];
+		changeRoomA= new Player[ROWSA][ROWSA];
+		changeRoomB= new Player[ROWSA][COLSB];
 	}
 	
 	public boolean findId(String id){
@@ -126,7 +132,12 @@ public class Club{
 		for(int i=0; i<teams.length && !done;i++){
 			if(teams[i]==null){
 				done = true;
-				teams[i]= new Team(teamName);
+				if(i==0){
+					teams[i]= new Team(teamName, i, ROWSA, ROWSA);
+				}else{
+					teams[i]= new Team(teamName, i, ROWSA, COLSB);
+				}
+				
 			}
 		}
 	}
@@ -173,6 +184,24 @@ public class Club{
 	}
 		return validFormation;
 	}//end validFormation
+	
+	public String organizePlayers(String teamName){
+		String message="";
+		
+		boolean found = false;
+		for(int i=0;i<teams.length && !found;i++){
+			if(teams[i]!=null && teams[i].getName().equalsIgnoreCase(teamName)){
+				found = true;
+				if(i==0){
+					message = teams[i].organizePlayers(ROWSA,ROWSA);
+				}else{
+					message = teams[i].organizePlayers(ROWSA,COLSB);
+				}
+				
+			}
+		}
+		return message;
+	}
 	
 	public String showEmployee(int index){
 		

@@ -5,10 +5,10 @@ public class Team{
 	//constants
 	private final int MAX_TEC_ASIS = 3;
 	private final int MAX_PLAYERS = 25;
-	private final int MAX_MEMBERS = 29;
 	//atributes
 	private String name;
-	
+	private int[][] changeRoomLayout;
+	private int asignedChangeR;
 	//relations
 	private PrincipalCoach principalCoach;
 	private TecAsistent[] tecAsistents;
@@ -16,12 +16,18 @@ public class Team{
 	private ArrayList <Alignment> alignments;
 //	private Employee[] members;
 	
-	public Team(String name){
+	public Team(String name, int changeRType, int row, int col){
 		this.name = name;
+		asignedChangeR = changeRType;
 		principalCoach = null;
 		tecAsistents = new TecAsistent[MAX_TEC_ASIS];
 		template = new Player[MAX_PLAYERS];
 		alignments = new ArrayList<Alignment>();
+		for(int i=0;i<template.length;i++){
+			template[i]=null;
+		}
+		
+		changeRoomLayout = new int[row][col];
 	}
 	
 	public String getName(){
@@ -122,6 +128,48 @@ public class Team{
 				alignments.get(i).addFormation(formationX);	
 			}
 		}
+	}
+	
+public String organizePlayers(int row, int col){
+	
+		String message ="";
+		int playerIndex=0;
+		boolean empty = false;
+		
+		
+		
+		for(int i=0;i<row;i++){
+			for(int j=0;j<col;j++){
+				
+				if(empty==false && template[playerIndex]!=null){
+					changeRoomLayout[i][j] = Integer.parseInt(template[playerIndex].getShirt());
+					playerIndex++;
+				}
+				
+				empty=!empty;
+			}
+		}
+		
+		message=showChangeRoom(row, col, changeRoomLayout);
+			
+		return message;
+	}
+	
+	public String showChangeRoom(int row, int col, int[][] matrixCR){
+		String message="";
+		
+		for(int i=0;i<row;i++){
+			for(int j=0;j<col;j++){
+				if(matrixCR[i][j]<10){
+					message+="[0"+matrixCR[i][j]+"] ";
+				}else{
+				message+="["+matrixCR[i][j]+"] ";
+				}
+			}
+			message+="\n";
+		}
+		
+		return message;
 	}
 	
 	public String showFormation(String dateA, String formationX){

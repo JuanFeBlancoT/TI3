@@ -18,6 +18,10 @@ public class Player extends Employee{
 		position=Position.valueOf(positionP);
 	}
 	
+	public String getShirt(){
+		return shirtNumber;
+	}
+	
 	public String toString(){
 		
 		String message=super.toString();
