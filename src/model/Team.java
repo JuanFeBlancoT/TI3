@@ -21,6 +21,7 @@ public class Team{
 		principalCoach = null;
 		tecAsistents = new TecAsistent[MAX_TEC_ASIS];
 		template = new Player[MAX_PLAYERS];
+		alignments = new ArrayList<Alignment>();
 	}
 	
 	public String getName(){
@@ -101,6 +102,26 @@ public class Team{
 		}
 		
 		return message;
+	}// end toString
+	
+	public boolean findAlignment(String dateA){
+		boolean found = false;
+		for(int i=0;i<alignments.size() && !found ;i++){
+			if(alignments.get(i).getDate().equalsIgnoreCase(dateA)){
+				found = true;
+			}
+		}
+		return found;
+	}
+	
+	public void addFormation(String dateA, String formationX){
+		boolean found = false;
+		for(int i=0;i<alignments.size() && !found ;i++){
+			if(alignments.get(i).getDate().equalsIgnoreCase(dateA)){
+				found = true;
+				alignments.get(i).addFormation(formationX);	
+			}
+		}
 	}
 	
 }

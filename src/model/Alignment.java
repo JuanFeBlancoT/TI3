@@ -12,7 +12,16 @@ public class Alignment{
 	public Alignment(String date, String tactics){
 		this.date = date;
 		tactic = Tactic.valueOf(tactics);
+		formation = new ArrayList <String>();
 		
 		//position=Position.valueOf(positionP);
+	}
+	
+	public String getDate(){
+		return date;
+	}
+	
+	public void addFormation(String formationX){
+		formation.add(formationX);
 	}
 }

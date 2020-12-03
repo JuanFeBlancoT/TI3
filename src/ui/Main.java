@@ -27,6 +27,7 @@ public class Main{
 			"\n 3. Crear equipo"+
 			"\n 4. Agregar jugadores a los equipos"+
 			"\n 5. Agregar alineacion a un equipo"+
+			"\n 6. Agregar formacion a la alineacion de un equipo"+
 			"\n 8. Mostrar empleados"+
 			"\n 9. Mostrar equipos"+
 			"\n 10. Salir");
@@ -57,7 +58,9 @@ public class Main{
 			case 5:
 					addAlignment(club1);
 			break;
-			
+			case 6:
+					addFormation(club1);
+			break;
 			case 8:
 					showEmployees(club1, numEmployees);
 			break;
@@ -418,7 +421,7 @@ public class Main{
 			"\n 3. Presion alta"+
 			"\n 4. Por defecto");
 			
-			option = sc.nextInt();
+			option = sc.nextInt();sc.nextLine();
 			}
 			
 			switch(option){
@@ -441,5 +444,35 @@ public class Main{
 			System.out.print(" El equipo no existe ");
 		}
 		
+	}//end addAlignment
+	
+	public static void addFormation(Club clubx){
+		System.out.print("Inserta en nombre del equipo al que quieres agregar una formacion: ");
+		String teamName = sc.nextLine();
+		
+		boolean existingTeam = clubx.findTeam(teamName);
+		if(existingTeam){
+			System.out.print("Inserta la fecha de la alineacion: ");
+			String dateA = sc.nextLine();
+			
+			boolean existingAlign = clubx.findAlignment(teamName, dateA);
+			if(existingAlign){
+				System.out.print("Inserta la alineacion de la siguiente forma: n-n-n. Recuerda que la suma de los numeros insertados debe dar 10. ");
+				String formationX = sc.nextLine();
+				boolean validFormation = clubx.validateFormation(formationX);
+				
+				if(validFormation){
+					clubx.addFormation(teamName, dateA, formationX);
+				}else{
+					System.out.print("Formacion invalida ");
+				}
+			}else{
+				System.out.print("No se hallan alineaciones atribuidas a esta fecha");
+			}
+		}else{
+			System.out.print("El equipo no existe");
+		}
+		
 	}
+	
 }

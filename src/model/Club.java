@@ -50,6 +50,18 @@ public class Club{
 		return alreadyIn;		
 	}
 	
+	public boolean findAlignment(String teamName, String dateA){
+		boolean existingAl = false;
+		boolean found = false;
+		for(int i=0;i<teams.length && !found;i++){
+			if(teams[i]!=null && teams[i].getName().equalsIgnoreCase(teamName)){
+				found = true;
+				existingAl = teams[i].findAlignment(dateA);
+			}
+		}
+		return existingAl;
+	}
+	
 	public void addEmployeeToTeam(String teamName, String playerId){
 		
 		Employee employeeX = null;
@@ -126,6 +138,31 @@ public class Club{
 			}
 		}
 	}
+	
+	public void addFormation(String teamName, String dateA, String formationX){
+		boolean found = false;
+		for(int i=0;i<teams.length && !found;i++){
+			if(teams[i]!=null && teams[i].getName().equalsIgnoreCase(teamName)){
+				found = true;
+				teams[i].addFormation(dateA, formationX);
+			}
+		}
+	}
+	
+	public boolean validateFormation(String formationX){
+		String[] formText = formationX.split("-");
+		int sumFormation = 0;
+		boolean validFormation = false;
+		//int[] formNums = new int[formText.length];
+		for(int i=0;i<formText.length;i++){
+			//formNums[i] = Integer.parseInt(formText[i]);
+			 sumFormation += Integer.parseInt(formText[i]);
+		}
+		if(sumFormation==10){
+			validFormation = true;
+		}
+		return validFormation;
+	}//end validFormation
 	
 	public String showEmployee(int index){
 		
