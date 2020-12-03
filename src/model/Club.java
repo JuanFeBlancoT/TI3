@@ -70,6 +70,19 @@ public class Club{
 		return existingAl;
 	}
 	
+	public boolean findPlayerOnTeam(String playerId, String teamName){
+		boolean found = false;
+		
+		for(int i=0;i<teams.length;i++){
+			if(teams[i].getName().equalsIgnoreCase(teamName) && i==0){
+				found = teams[1].findPlayer(playerId);
+			}else if(teams[i].getName().equalsIgnoreCase(teamName) && i==1){
+				found = teams[0].findPlayer(playerId);
+			}
+		}
+		return found;
+	}
+	
 	public void addEmployeeToTeam(String teamName, String playerId){
 		
 		Employee employeeX = null;

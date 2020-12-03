@@ -28,7 +28,7 @@ public class Main{
 			"\n 4. Agregar jugadores a los equipos"+
 			"\n 5. Agregar alineacion a un equipo"+
 			"\n 6. Agregar formacion a la alineacion de un equipo"+
-			"\n 7. Organizar jugadores en un vestidor"+
+			"\n 7. Mostrar organizacion de los jugadores en un vestidor"+
 			"\n 8. Mostrar empleados"+
 			"\n 9. Mostrar equipos"+
 			"\n 10. Salir");
@@ -351,6 +351,7 @@ public class Main{
 	}
 	
 	public static void addPlayerToTeam(Club clubx){
+		
 		System.out.print("Inserta el nombre del equipo: ");
 		String teamName = sc.nextLine();
 		boolean existingTeam = clubx.findTeam(teamName);
@@ -359,7 +360,13 @@ public class Main{
 				String playerId = sc.nextLine();
 				boolean existingId = clubx.findId(playerId);
 				if(existingId){
-					clubx.addEmployeeToTeam(teamName, playerId);
+					boolean alreadyInTeam = clubx.findPlayerOnTeam(playerId, teamName);
+					if(alreadyInTeam){
+						System.out.print("Este jugador ya pertenece a un equipo. No puede ser agregado a otro");
+					}else{
+						clubx.addEmployeeToTeam(teamName, playerId);
+					}
+					
 				}else{
 					System.out.print("El empleado no se encuentra registrado");
 				}
@@ -517,7 +524,7 @@ public class Main{
 	public static void organizePlayers(Club clubx){
 		String message="";
 		
-		System.out.print("Inserta el nombre del equipo cuyo jugadores seran organizados: ");
+		System.out.print("Inserta el nombre del equipo para ver como esta organizado su vestidor asignado: ");
 		String teamName = sc.nextLine();
 		
 		boolean existingTeam = clubx.findTeam(teamName);

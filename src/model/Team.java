@@ -34,6 +34,16 @@ public class Team{
 		return name;
 	}
 	
+	public boolean findPlayer(String playerId){
+		boolean found = false;
+		for(int i=0;i<template.length && !found;i++){
+			if(template[i]!=null && template[i].getId().equalsIgnoreCase(playerId)){
+				found = true;
+			}
+		}
+		return found;
+	}
+	
 	public void addPrincipalCoach(Employee employeeX){
 		
 		String message = "";
@@ -136,6 +146,9 @@ public String organizePlayers(int row, int col){
 		int playerIndex=0;
 		boolean empty = false;
 		
+		/*List<Player> playersTemplate = Arrays.asList(template);
+		Collections.shuffle(playersTemplate);
+		playersTemplate.toArray(template);*/
 		
 		
 		for(int i=0;i<row;i++){
