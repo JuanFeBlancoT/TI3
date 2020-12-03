@@ -20,7 +20,7 @@ public abstract class Employee{
 	}
 	
 	public String toString(){
-		String message = ("**** Empleado ****"+
+		String message = ("\n**** Empleado ****"+
 		"\n ** Nombre: "+ name+ 
 		"\n ** Id: "+ id+
 		"\n ** Salario: "+ salary+

@@ -30,9 +30,11 @@ public class Main{
 			"\n 6. Agregar formacion a la alineacion de un equipo"+
 			"\n 7. Mostrar organizacion de los jugadores en un vestidor"+
 			"\n 8. Mostrar organizacion de los entrenadores en oficinas"+
-			"\n 11. Mostrar empleados"+
-			"\n 12. Mostrar equipos"+
-			"\n 13. Salir");
+			"\n 12. Mostrar un empleado"+
+			"\n 13. Mostrar un equipo"+
+			"\n 14. Mostrar empleados"+
+			"\n 15. Mostrar equipos"+
+			"\n 16. Salir");
 			
 			int option = sc.nextInt(); sc.nextLine();
 			
@@ -55,7 +57,7 @@ public class Main{
 					
 			break;
 			case 4:
-					addPlayerToTeam(club1);
+					addPlayerToTeam(club1, numTeams);
 			break;
 			case 5:
 					addAlignment(club1);
@@ -69,13 +71,19 @@ public class Main{
 			case 8:
 					organizeCoaches(club1);
 			break;
-			case 11:
-					showEmployees(club1, numEmployees);
-			break;
 			case 12:
-					showTeams(club1, numTeams);
+					showEmployee(club1);
 			break;
 			case 13:
+					showTeam(club1);
+			break;
+			case 14:
+					showEmployees(club1, numEmployees);
+			break;
+			case 15:
+					showTeams(club1, numTeams);
+			break;
+			case 16:
 					menu = false;
 			break;
 
@@ -354,8 +362,9 @@ public class Main{
 		
 	}
 	
-	public static void addPlayerToTeam(Club clubx){
+	public static void addPlayerToTeam(Club clubx, int numTeams){
 		
+		boolean alreadyInTeam = false;
 		System.out.print("Inserta el nombre del equipo: ");
 		String teamName = sc.nextLine();
 		boolean existingTeam = clubx.findTeam(teamName);
@@ -364,7 +373,9 @@ public class Main{
 				String playerId = sc.nextLine();
 				boolean existingId = clubx.findId(playerId);
 				if(existingId){
-					boolean alreadyInTeam = clubx.findPlayerOnTeam(playerId, teamName);
+					if(numTeams==2){
+						alreadyInTeam = clubx.findPlayerOnTeam(playerId, teamName);
+					}					
 					if(alreadyInTeam){
 						System.out.print("Este jugador ya pertenece a un equipo. No puede ser agregado a otro");
 					}else{
@@ -550,6 +561,36 @@ public class Main{
 	
 	public static void organizeCoaches(Club clubx){
 		String message=clubx.organizeCoaches();
+		System.out.print(message);
+	}
+	
+	public static void showEmployee(Club clubx){
+		String message="";
+		System.out.print("Inserta el id del jugador que quieres ver: ");
+		String playerId = sc.nextLine();
+		
+		boolean exist = clubx.findId(playerId);
+		if(exist){
+			int index = clubx.detectEmployee(playerId);
+			message = clubx.showEmployee(index);
+		}else{
+			System.out.print("El empleado no existe");
+		}
+		System.out.print(message);
+	}
+	
+	public static void showTeam(Club clubx){
+		String message="";
+		System.out.print("Inserta el nombre del equipo que quieres ver: ");
+		String teamName = sc.nextLine();
+		boolean exist = clubx.findTeam(teamName);
+		
+		if(exist){
+			int index = clubx.detectTeam(teamName);
+			message = clubx.showTeam(index);
+		}else{
+			System.out.print("El equipo no existe");
+		}
 		System.out.print(message);
 	}
 	

@@ -268,6 +268,32 @@ public class Club{
 		return messagex;		
 	}
 	
+	public int detectEmployee(String id){
+		int index=0;
+		boolean found = false;
+		
+		for(int i=0;i<payroll.size() && !found;i++){
+			if(payroll.get(i).getId().equalsIgnoreCase(id)){
+				found = true;
+				index=i;
+			}
+		}
+		
+		return index;
+	}
+	
+	public int detectTeam(String teamName){
+		int index=0;
+		boolean found = false;
+		for(int i=0;i<teams.length && !found;i++){
+			if(teams[i]!=null && teams[i].getName().equalsIgnoreCase(teamName)){
+				found = true;
+				index=i;
+			}
+		}
+		return index;
+	}
+	
 	public String showTeam(int index){
 		
 		String messagex="";

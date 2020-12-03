@@ -97,7 +97,7 @@ public class Team{
 	}
 	
 	public String toString(){
-		String message = (" *** EQUIPO *** " +
+		String message = ("\n *** EQUIPO *** " +
 		"\n ** Name: "+ name);
 		if(principalCoach!=null){
 			message+=("\n ** Coach principal: " +  principalCoach.getName());
