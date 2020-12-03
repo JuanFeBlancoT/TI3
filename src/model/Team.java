@@ -124,4 +124,17 @@ public class Team{
 		}
 	}
 	
+	public String showFormation(String dateA, String formationX){
+		boolean found = false;
+		String message="";
+		
+		for(int i=0;i<alignments.size() && !found ;i++){
+			if(alignments.get(i).getDate().equalsIgnoreCase(dateA)){
+				found = true;
+				message = alignments.get(i).selectFormation(formationX);	
+			}
+		}
+		return message;
+	}
+	
 }

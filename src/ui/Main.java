@@ -93,7 +93,10 @@ public class Main{
 		System.out.print("\nInserta la fecha de fundacion del club: ");
 		String fundationD = sc.nextLine();
 		
-		Club clubx = new Club(name, fundationD);
+		System.out.print("\nInserta el NIT del club: ");
+		String nit = sc.nextLine();
+		
+		Club clubx = new Club(name, fundationD, nit);
 		return clubx;
 	}//end createClub
 	
@@ -447,6 +450,8 @@ public class Main{
 	}//end addAlignment
 	
 	public static void addFormation(Club clubx){
+		String message="";
+		
 		System.out.print("Inserta en nombre del equipo al que quieres agregar una formacion: ");
 		String teamName = sc.nextLine();
 		
@@ -463,6 +468,36 @@ public class Main{
 				
 				if(validFormation){
 					clubx.addFormation(teamName, dateA, formationX);
+					message = clubx.showFormation(teamName, dateA, formationX);
+				}else{
+					System.out.print("Formacion invalida ");
+				}
+			}else{
+				System.out.print("No se hallan alineaciones atribuidas a esta fecha");
+			}
+		}else{
+			System.out.print("El equipo no existe");
+		}
+		System.out.print(message);
+	}
+	
+	/*public static void showFormation(Club clubx){
+		System.out.print("Inserta en nombre del equipo del cual deseas ver una formacion: ");
+		String teamName = sc.nextLine();
+		
+		boolean existingTeam = clubx.findTeam(teamName);
+		if(existingTeam){
+			System.out.print("Inserta la fecha de la alineacion: ");
+			String dateA = sc.nextLine();
+			
+			boolean existingAlign = clubx.findAlignment(teamName, dateA);
+			if(existingAlign){
+				System.out.print("Inserta la alineacion de la siguiente forma: n-n-n de la misma forma en la que fue registrada ");
+				String formationX = sc.nextLine();
+				boolean validFormation = clubx.validateFormation(formationX);
+				
+				if(validFormation){
+					clubx.showFormation(teamName, dateA, formationX);
 				}else{
 					System.out.print("Formacion invalida ");
 				}
@@ -473,6 +508,6 @@ public class Main{
 			System.out.print("El equipo no existe");
 		}
 		
-	}
+	}*/
 	
 }

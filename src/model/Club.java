@@ -8,6 +8,7 @@ public class Club{
 	//Atributes
 	private String name;
 	private String fundationD;
+	private String nit;
 	//Relations
 	ArrayList <Employee> payroll;
 	private Team[] teams;
@@ -17,9 +18,10 @@ public class Club{
 	* <b> pre </b> <br>
 	* <b> pos </b> It generates an array of employees<br>
 	*/
-	public Club(String name, String fundationD){
+	public Club(String name, String fundationD, String nit){
 		this.name = name;
 		this.fundationD = fundationD;
+		this.nit = nit;
 		payroll = new ArrayList <Employee>();
 		teams = new Team[MAX_TEAMS];
 	}
@@ -153,14 +155,22 @@ public class Club{
 		String[] formText = formationX.split("-");
 		int sumFormation = 0;
 		boolean validFormation = false;
+		boolean invalid = false;
 		//int[] formNums = new int[formText.length];
-		for(int i=0;i<formText.length;i++){
+	if(formText.length==3){
+		
+		for(int i=0;i<formText.length && !invalid;i++){
 			//formNums[i] = Integer.parseInt(formText[i]);
-			 sumFormation += Integer.parseInt(formText[i]);
+			if(Integer.parseInt(formText[i])>8){
+				invalid = true;
+			}else{
+			sumFormation += Integer.parseInt(formText[i]);
+			}
 		}
 		if(sumFormation==10){
 			validFormation = true;
 		}
+	}
 		return validFormation;
 	}//end validFormation
 	
@@ -176,5 +186,18 @@ public class Club{
 		String messagex="";
 		messagex=teams[index].toString();
 		return messagex;		
+	}
+	
+	public String showFormation(String teamName, String dateA, String formationX){
+		boolean found = false;
+		String message="";
+		
+		for(int i=0;i<teams.length && !found;i++){
+			if(teams[i]!=null && teams[i].getName().equalsIgnoreCase(teamName)){
+				found = true;
+				message = teams[i].showFormation(dateA, formationX);
+			}
+		}
+		return message;
 	}
 }
