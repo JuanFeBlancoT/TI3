@@ -29,9 +29,10 @@ public class Main{
 			"\n 5. Agregar alineacion a un equipo"+
 			"\n 6. Agregar formacion a la alineacion de un equipo"+
 			"\n 7. Mostrar organizacion de los jugadores en un vestidor"+
-			"\n 8. Mostrar empleados"+
-			"\n 9. Mostrar equipos"+
-			"\n 10. Salir");
+			"\n 8. Mostrar organizacion de los entrenadores en oficinas"+
+			"\n 11. Mostrar empleados"+
+			"\n 12. Mostrar equipos"+
+			"\n 13. Salir");
 			
 			int option = sc.nextInt(); sc.nextLine();
 			
@@ -66,12 +67,15 @@ public class Main{
 					organizePlayers(club1);
 			break;
 			case 8:
+					organizeCoaches(club1);
+			break;
+			case 11:
 					showEmployees(club1, numEmployees);
 			break;
-			case 9:
+			case 12:
 					showTeams(club1, numTeams);
 			break;
-			case 10:
+			case 13:
 					menu = false;
 			break;
 
@@ -541,6 +545,11 @@ public class Main{
 			System.out.print("El equipo no existe");
 		}
 		
+		System.out.print(message);
+	}
+	
+	public static void organizeCoaches(Club clubx){
+		String message=clubx.organizeCoaches();
 		System.out.print(message);
 	}
 	

@@ -7,12 +7,15 @@ public class Club{
 	public final int MAX_TEAMS = 2;
 	public final int ROWSA = 7;
 	public final int COLSB = 6;
+	public final int OFFICE_ROW = 6;
 	//Atributes
 	private String name;
 	private String fundationD;
 	private String nit;
 	private Player[][] changeRoomA;
 	private Player[][] changeRoomB;
+	private Employee[][] offices;
+	
 	//Relations
 	ArrayList <Employee> payroll;
 	private Team[] teams;
@@ -30,6 +33,7 @@ public class Club{
 		teams = new Team[MAX_TEAMS];
 		changeRoomA= new Player[ROWSA][ROWSA];
 		changeRoomB= new Player[ROWSA][COLSB];
+		offices=new Employee[OFFICE_ROW][OFFICE_ROW];
 	}
 	
 	public boolean findId(String id){
@@ -213,6 +217,47 @@ public class Club{
 				
 			}
 		}
+		return message;
+	}
+	
+	public String organizeCoaches(){
+		String message="";
+		boolean empty = false;
+		int payrollIndex =0;
+
+		if(payroll.size()>0){
+			for(int i=0;i<OFFICE_ROW;i++){
+				for(int j=0;j<OFFICE_ROW && payrollIndex<payroll.size();j++){
+					
+					if(!empty && payroll.get(payrollIndex) instanceof Coach){	
+						
+						offices[i][j] = payroll.get(payrollIndex);
+						payrollIndex++;
+						}
+					empty=!empty;
+				}
+				empty=!empty;
+			}
+			
+			message = showOffice(offices);
+		}
+		return message;
+	}
+	
+	public String showOffice(Employee[][] coaches){
+		String message="";
+		
+		 for(int i=0;i<OFFICE_ROW;i++){
+			for(int j=0;j<OFFICE_ROW;j++){
+					if(coaches[i][j]!=null){
+					message+="["+coaches[i][j].getName()+"]\t";
+					}else{
+						message+="[ ]\t";
+					}
+			}
+			message+="\n";
+		}
+		
 		return message;
 	}
 	
