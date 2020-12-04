@@ -14,6 +14,32 @@ public class PrincipalCoach extends Coach implements Calculations{
 		nChampionships = championships.length;
 	}
 	
+	public int getWonChampionships(){
+		return nChampionships;
+	}
+	
+	public void setNumTeams(int numberTeams){
+		this.numberTeams = numberTeams;
+	}
+	
+	public void setChampionships(String[] championships){
+		this.championships = championships;
+		this.nChampionships = championships.length;
+	}
+	
+	public double calculateMarketPrice(){
+		double price = 0;
+		price = (getSalary()*10)+(getYearsXp()*100)+(getWonChampionships()*50);
+		
+		return price;
+	} 
+		
+	public double calculateStarLevel(){
+		double levelS = 0;
+		levelS = 5 + ((double)getWonChampionships()/10);
+		return levelS;
+	}
+	
 	public String toString(){
 		
 		String message=super.toString();
@@ -27,27 +53,6 @@ public class PrincipalCoach extends Coach implements Calculations{
 		message+="\n ** Precio mercado: "+calculateMarketPrice()+"\n";
 		
 		return message;
-	}
-	
-	public int getWonChampionships(){
-		return nChampionships;
-	}
-	
-	public double calculateMarketPrice(){
-		double price = 0;
-		price = (getSalary()*10)+(getYearsXp()*100)+(getWonChampionships()*50);
-		
-		return price;
-	} 
-	
-	public void setNumberTeams(int numberTeams){
-		this.numberTeams = numberTeams;
-	}
-		
-	public double calculateStarLevel(){
-		double levelS = 0;
-		levelS = 5 + ((double)getWonChampionships()/10);
-		return levelS;
 	}
 	
 }

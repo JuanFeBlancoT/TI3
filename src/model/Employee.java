@@ -19,16 +19,6 @@ public abstract class Employee{
 		return id;
 	}
 	
-	public String toString(){
-		String message = ("\n**** Empleado ****"+
-		"\n ** Nombre: "+ name+ 
-		"\n ** Id: "+ id+
-		"\n ** Salario: "+ salary+
-		"\n ** Stado: "+ state);
-		
-		return message;
-	}
-	
 	public String getName(){
 		return name;
 	}
@@ -51,5 +41,15 @@ public abstract class Employee{
 	
 	public void setState(boolean state){
 		this.state = state;
+	}
+	
+	public String toString(){
+		String message = ("\n**** Empleado ****"+
+		"\n ** Nombre: "+ name+ 
+		"\n ** Id: "+ id+
+		"\n ** Salario: "+ salary+
+		"\n ** Stado: "+ state);
+		
+		return message;
 	}
 }

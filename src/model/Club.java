@@ -423,4 +423,54 @@ public class Club{
 			}
 		}
 	}
+	
+	public void updateYearsXp(String id, int newYearsXp){
+		boolean found = false;
+		for(int i=0;i<payroll.size() && !found;i++){
+			if(payroll.get(i).getId().equalsIgnoreCase(id)){
+				found = true;
+				((Coach)payroll.get(i)).setYearsXp(newYearsXp);
+			}
+		}
+	}
+	
+	public void updateWonChamps(String id, String[] newChampsNames){
+		boolean found = false;
+		for(int i=0;i<payroll.size() && !found;i++){
+			if(payroll.get(i).getId().equalsIgnoreCase(id)){
+				found = true;
+				((PrincipalCoach)payroll.get(i)).setChampionships(newChampsNames);
+			}
+		}
+	}
+	
+	public void updateNumTeams(String id, int newNumTeams){
+		boolean found = false;
+		for(int i=0;i<payroll.size() && !found;i++){
+			if(payroll.get(i).getId().equalsIgnoreCase(id)){
+				found = true;
+				((PrincipalCoach)payroll.get(i)).setNumTeams(newNumTeams);
+			}
+		}
+	}
+	
+	public void updateActive(String id, boolean newActive){
+		boolean found = false;
+		for(int i=0;i<payroll.size() && !found;i++){
+			if(payroll.get(i).getId().equalsIgnoreCase(id)){
+				found = true;
+				((TecAsistent)payroll.get(i)).setActive(newActive);
+			}
+		}
+	}
+	
+	public void updateExpertises(String id, String[] newExper){
+		boolean found = false;
+		for(int i=0;i<payroll.size() && !found;i++){
+			if(payroll.get(i).getId().equalsIgnoreCase(id)){
+				found = true;
+				((TecAsistent)payroll.get(i)).setExpertises(newExper);
+			}
+		}
+	}
 }	

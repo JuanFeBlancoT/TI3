@@ -22,6 +22,12 @@ public class TecAsistent extends Coach{
 		this.activedP = activedP;
 	}
 	
+	public void setExpertises(String[] listExpert){
+		for(int i=0;i<listExpertise.length && listExpert[i]!=null;i++){
+			listExpertise[i]= Expertise.valueOf(listExpert[i]);
+		}
+	}
+	
 	public String toString(){
 		
 		String message=super.toString();

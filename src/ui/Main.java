@@ -672,7 +672,7 @@ public class Main{
 			System.out.print(userInfo);
 			System.out.print("\n");
 			
-			System.out.print("\nQue deseas cambiar?"+
+			System.out.println("\nQue deseas cambiar?"+
 				"\n ** 1. Nombre"+
 				"\n ** 2. Identficador"+
 				"\n ** 3. Salario"+
@@ -682,7 +682,7 @@ public class Main{
 			option = sc.nextInt(); sc.nextLine();
 			
 			while(option<1 || option>5){
-				System.out.print("\nOpcion invalida"+
+				System.out.println("\nOpcion invalida"+
 					"\nQue deseas cambiar?"+
 					"\n ** 1. Nombre"+
 					"\n ** 2. Identficador"+
@@ -728,17 +728,192 @@ public class Main{
 				
 					idType = clubx.getEmployeeType(id);
 					int optionT;
+					int yearsXp;
 					switch(idType){
 						case 1:
-							System.out.print("Que deseas cambiar?"+
-							"\n ** 1. Años de experiencia"+
+							System.out.println("Que deseas cambiar?"+
+							"\n ** 1. Anios de experiencia"+
+							"\n ** 2. Equipos a su cargo"+
 							"\n ** 2. Numero de campeonatos ganados");
+							optionT = sc.nextInt(); sc.nextLine();
+							
+							while(optionT<1 || optionT>3){
+								System.out.print("\nOpcion no valida\n");
+								System.out.println("Que deseas cambiar?"+
+								"\n ** 1. Anios de experiencia"+
+								"\n ** 2. Equipos a su cargo"+
+								"\n ** 3. Numero de campeonatos ganados");
+								optionT = sc.nextInt(); sc.nextLine();
+							}
+							switch(optionT){
+								case 1:
+									System.out.print("Inserta el nuevo numero de años de experiencia: ");
+									yearsXp = sc.nextInt(); sc.nextLine();
+									while(yearsXp<0){
+										System.out.print("No se puede agregar un numero negativo");
+										System.out.print("Inserta el nuevo numero de años de experiencia: ");
+										yearsXp = sc.nextInt(); sc.nextLine();
+									}
+									clubx.updateYearsXp(id, yearsXp);
+								break;
+								case 2:
+									int newNumTeams;
+									System.out.print("Inserta el nuevo numero de equipos que ha tenido a su cargo: ");
+									newNumTeams = sc.nextInt(); sc.nextLine();
+									while(newNumTeams<0){
+										System.out.print("No se puede agregar un numero negativo");
+										System.out.print("Inserta el nuevo numero de equipos que ha tenido a su cargo: ");
+										newNumTeams = sc.nextInt(); sc.nextLine();
+									}
+									
+									clubx.updateNumTeams(id, newNumTeams);
+									
+								break;
+								case 3:
+									int newWonChamps;
+									System.out.print("Inserta el nuevo numero de campeonatos ganados: ");
+									newWonChamps = sc.nextInt(); sc.nextLine();
+									while(newWonChamps<0){
+										System.out.print("No se puede agregar un numero negativo");
+										System.out.print("Inserta el nuevo numero de campeonatos ganados: ");
+										newWonChamps = sc.nextInt(); sc.nextLine();
+									}
+									String[] newChampNames = new String[newWonChamps];
+									for(int i=0;i<newWonChamps;i++){
+										System.out.print("Inserta el nombre del "+(i+1)+" campeonato ganado: ");
+										newChampNames[i]= sc.nextLine();
+									}
+									
+									clubx.updateWonChamps(id, newChampNames);
+								break;
+							}
+							
 						break;
 						case 2:
-							System.out.print("Instance of asistent");
+							System.out.println("Que deseas cambiar?"+
+							"\n ** 1. Años de experiencia"+
+							"\n ** 2. Ha sido un jugador activo"+
+							"\n ** 3. Experticias");
+							optionT = sc.nextInt(); sc.nextLine();
+							
+							while(optionT<1 || optionT>4){
+								System.out.print("\nOpcion no valida\n");
+								System.out.println("Que deseas cambiar?"+
+								"\n ** 1. Años de experiencia"+
+								"\n ** 2. Ha sido un jugador activo"+
+								"\n ** 3. Experticias");
+								optionT = sc.nextInt(); sc.nextLine();
+							}
+							
+							switch(optionT){
+								case 1:
+									System.out.print("Inserta el nuevo numero de anios de experiencia: ");
+									yearsXp = sc.nextInt(); sc.nextLine();
+									while(yearsXp<0){
+										System.out.print("No se puede agregar un numero negativo");
+										System.out.print("Inserta el nuevo numero de años de experiencia: ");
+										yearsXp = sc.nextInt(); sc.nextLine();
+									}
+									clubx.updateYearsXp(id, yearsXp);
+								break;
+								case 2:
+									System.out.print("Inserta si el asistente fue un jugador activo en el pasado. si o no: ");
+									String wasActvie = sc.nextLine();
+									boolean newActive;
+									if(wasActvie.equalsIgnoreCase("si")){
+										newActive = true;
+									}else{
+										newActive = false;
+									}
+									
+									clubx.updateActive(id, newActive);
+								break;
+								case 3:
+								
+									String[] expertises = new String[6];
+									int[] numExpertises = new int[6];
+									boolean choosen = false;
+									
+									System.out.print("Tiene alguna experticia? si o no: ");
+									String hasExpert = sc.nextLine();
+									
+									boolean keepAsking =false;
+									if(hasExpert.equalsIgnoreCase("si")){
+										keepAsking = true;
+									}
+					
+									for(int i=0; i<expertises.length && keepAsking ;i++){
+					
+					
+										System.out.println("Que experiencia tiene ?:"+
+										"\n1. Ofensiva"+
+										"\n2. Defensiva"+
+										"\n3. Posesion"+
+										"\n4. Jugadas de laboratorio"+
+										"\n5. Arco"+
+										"\n6. Pases");			
+										int numExpertise;
+										numExpertise = sc.nextInt(); sc.nextLine();
+										
+										//Option verification
+										while(numExpertise<1 || numExpertise>6){
+											System.out.print("\n **** OPCION NO VALIDA ****\n");
+											System.out.println("Que experiencia tiene ?:"+
+											"\n1. Ofensiva"+
+											"\n2. Defensiva"+
+											"\n3. Posesion"+
+											"\n4. Jugadas de laboratorio"+
+											"\n5. Arco"+
+											"\n6. Pases");			
+											
+											numExpertise = sc.nextInt(); sc.nextLine();
+										}
+						
+										choosen = confirmSelection(numExpertise, numExpertises);
+										if(!choosen){
+											numExpertises[i]=numExpertise;
+										
+						
+											switch(numExpertise){
+												case 1:
+													expertises[i] = "OFENSIVA";
+												break;
+												case 2:
+													expertises[i] = "DEFENSIVA";
+												break;
+												case 3:
+													expertises[i] = "POSESION";
+												break;
+												case 4:
+													expertises[i] = "JUGADAS_LABORATORIO";
+												break;
+												case 5:
+													expertises[i] = "ARCO";
+												break;
+												case 6:
+													expertises[i] = "PASES";
+												break;
+											}
+										}else{
+											System.out.print("Ya habias seleccionado esta opcion...\n");
+											i--;
+										}
+					
+										System.out.print("Tiene otra experiencia ? si o no: ");
+										String hasOtherE = sc.nextLine();
+					
+										if(hasOtherE.equalsIgnoreCase("no")){
+											keepAsking = false;
+										}
+					
+									}//end coso
+									
+									clubx.updateExpertises(id, expertises);
+								break;
+							}//end internal switch of Technical asistent 
 						break;
 						case 3:
-							System.out.print("Que deseas cambiar?"+
+							System.out.println("Que deseas cambiar?"+
 							"\n ** 1. Numero de camiseta"+
 							"\n ** 2. Goles marcados"+
 							"\n ** 3. Evaluacion promedio"+
@@ -747,7 +922,7 @@ public class Main{
 							
 							while(optionT<1 || optionT>4){
 								System.out.print("\nOpcion no valida\n");
-								System.out.print("\nQue deseas cambiar?"+
+								System.out.println("\nQue deseas cambiar?"+
 								"\n ** 1. Numero de camiseta"+
 								"\n ** 2. Goles marcados"+
 								"\n ** 3. Evaluacion promedio"+
@@ -786,7 +961,7 @@ public class Main{
 									}
 								break;
 								case 4:
-									System.out.print("\nInserta la nueva posicion del jugador: "+ 
+									System.out.println("\nInserta la nueva posicion del jugador: "+ 
 									"\n 1. Delantero"+
 									"\n 2. Volante"+
 									"\n 3. Defensor"+
@@ -797,7 +972,7 @@ public class Main{
 									
 									while(optionPos<1 || optionPos>4){
 										System.out.print("\nOpcion no valida\n");
-										System.out.print("\nInserta la nueva posicion del jugador: "+ 
+										System.out.println("\nInserta la nueva posicion del jugador: "+ 
 										"\n 1. Delantero"+
 										"\n 2. Volante"+
 										"\n 3. Defensor"+

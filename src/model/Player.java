@@ -22,20 +22,6 @@ public class Player extends Employee implements Calculations{
 		return shirtNumber;
 	}
 	
-	public String toString(){
-		
-		String message=super.toString();
-
-		message+="\n ** Numero de camiseta: "+ shirtNumber +
-		"\n ** Cantidad de goles: "+ goals +
-		"\n ** Calificacion promedio: "+ evaAvearage +
-		"\n ** Posicion: "+ position+
-		"\n ** Precio mercado: "+ calculateMarketPrice()+
-		"\n ** Nivel como estrella: "+ calculateStarLevel()+"\n";
-		
-		return message;
-	}
-	
 	public int getGoals(){
 		return goals;
 	}
@@ -100,5 +86,19 @@ public class Player extends Employee implements Calculations{
 		}
 		
 		return levelS;
+	}
+	
+	public String toString(){
+		
+		String message=super.toString();
+
+		message+="\n ** Numero de camiseta: "+ shirtNumber +
+		"\n ** Cantidad de goles: "+ goals +
+		"\n ** Calificacion promedio: "+ evaAvearage +
+		"\n ** Posicion: "+ position+
+		"\n ** Precio mercado: "+ calculateMarketPrice()+
+		"\n ** Nivel como estrella: "+ calculateStarLevel()+"\n";
+		
+		return message;
 	}
 }

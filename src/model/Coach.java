@@ -14,6 +14,10 @@ public class Coach extends Employee{
 		return yearsXp;
 	}
 	
+	public void setYearsXp(int yearsXp){
+		this.yearsXp = yearsXp;
+	}
+	
 	public String toString(){
 		
 		String message=super.toString();
