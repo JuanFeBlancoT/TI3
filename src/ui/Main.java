@@ -44,13 +44,16 @@ public class Main{
 					numEmployees++;
 			break;
 			case 2:
-					fireEmployee(club1);
+					fireEmployee(club1, numTeams);
 					numEmployees--;
 			break;
 			case 3:
+					boolean done;
 					if(numTeams<2){
-						createTeam(club1);
-					numTeams++;
+						done = createTeam(club1);
+						if(done){
+							numTeams++;
+						}
 					}else{
 						System.out.println("	** CANT ADD MORE TEAMS. LIMIT REACHED **");
 					}
@@ -327,12 +330,12 @@ public class Main{
 	}//end contractEmployee
 	
 	
-	public static void fireEmployee(Club clubx){
+	public static void fireEmployee(Club clubx, int numTeams){
 		System.out.print("Inserta el Id del empleado que deseas despedir: ");
 		String firedId = sc.nextLine();
 		boolean existingId = clubx.findId(firedId);
 		if(existingId){
-			clubx.fireEmployee(firedId);
+			clubx.fireEmployee(firedId, numTeams);
 		}else{
 			System.out.print(" ** ESTE ID NO EXISTE **\n");
 		}
@@ -350,15 +353,19 @@ public class Main{
 		return choosen;
 	}
 	
-	public static void createTeam(Club clubx){
+	public static boolean createTeam(Club clubx){
+		boolean done = false;
 		System.out.print("Inserta el nombre del equipo: ");
 		String teamName = sc.nextLine();
 		boolean takenTeamName = clubx.findTeam(teamName);
 		if(takenTeamName){
 			System.out.print(" Taken team name");
+			
 		}else{
 			clubx.createTeam(teamName);
+			done=true;
 		}
+		return done;
 		
 	}
 	

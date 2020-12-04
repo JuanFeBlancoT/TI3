@@ -133,13 +133,21 @@ public class Club{
 		
 	}
 	
-	public void fireEmployee(String id){
+	public void fireEmployee(String id, int numberTeams){
 		boolean found = false;
 		for(int i=0;i<payroll.size() && !found;i++){
 			if(payroll.get(i).getId().equalsIgnoreCase(id)){
 				found = true;
 				payroll.remove(i);
 			}
+		}
+		for(int j=0;j<teams.length;j++){
+			if(numberTeams==2){
+				teams[j].fireEmployee(id);
+			}else{
+				teams[0].fireEmployee(id);
+			}
+			
 		}
 	}
 	

@@ -91,6 +91,26 @@ public class Team{
 		}
 	}
 	
+	public void fireEmployee(String id){
+		if(principalCoach!=null && principalCoach.getId().equalsIgnoreCase(id)){
+			principalCoach=null;
+		}
+		boolean stop = false;
+		for(int i=0;i<tecAsistents.length && !false;i++){
+			if(tecAsistents[i]!=null && tecAsistents[i].getId().equalsIgnoreCase(id)){
+				stop = true;
+				tecAsistents[i]=null;
+			}
+		}
+		boolean stop2 = false;
+		for(int j=0;j<tecAsistents.length && !stop2;j++){
+			if(template[j]!=null && template[j].getId().equalsIgnoreCase(id)){
+				stop2 = true;
+				template[j]=null;
+			}
+		}
+	}
+	
 	public void addAlignment(String dateA, String tactic){
 		Alignment alignmentX = new Alignment(dateA, tactic);
 		alignments.add(alignmentX);		
