@@ -80,7 +80,7 @@ public class Main{
 					updateTeam(club1);
 			break;
 			case 10:
-					//organizeCoaches(club1);
+					updateEmployee(club1);
 			break;
 			case 11:
 					showEmployee(club1);
@@ -148,7 +148,14 @@ public class Main{
 		}
 		
 		System.out.print("Inserta el salario del empleado: ");
-		int salary = sc.nextInt(); sc.nextLine();
+		int salary;
+		salary = sc.nextInt(); sc.nextLine();
+		while(salary<0){
+			System.out.print("\nNo se deben ingresar numeros negativos en este campo\n ");
+			System.out.print("Inserta el salario del empleado: ");
+			salary = sc.nextInt(); sc.nextLine();
+		}
+		
 		System.out.println("Es un empleado activo? si o no: ");
 		String activity = sc.nextLine();
 		boolean activityP = false;
@@ -181,11 +188,31 @@ public class Main{
 			case 1:
 				System.out.print("Inserta los anios de experiencia del entrenador: ");
 				yearsXp = sc.nextInt(); sc.nextLine();
-				System.out.print("Inserta el numero de equipos que ha tenido a su cargo: ");
-				int numberTeams = sc.nextInt(); sc.nextLine();
+				while(yearsXp<0){
+					System.out.print("\nNo se deben ingresar numeros negativos en este campo\n ");
+					System.out.print("Inserta los anios de experiencia del entrenador: ");
+					yearsXp = sc.nextInt(); sc.nextLine();
+				}
 				
+				int numberTeams;
+				System.out.print("Inserta el numero de equipos que ha tenido a su cargo: ");
+				numberTeams = sc.nextInt(); sc.nextLine();
+				while(numberTeams<0){
+					System.out.print("\nNo se deben ingresar numeros negativos en este campo\n ");
+					System.out.print("Inserta el numero de equipos que ha tenido a su cargo: ");
+					numberTeams = sc.nextInt(); sc.nextLine();
+				}
+				
+				int numChamps;
 				System.out.print("Inserta el numero de campeonatos conseguidos: ");
-				int numChamps = sc.nextInt(); sc.nextLine();
+				numChamps = sc.nextInt(); sc.nextLine();
+				
+				while(numChamps<0){
+					System.out.print("\nNo se deben ingresar numeros negativos en este campo\n ");
+					System.out.print("Inserta el numero de campeonatos conseguidos: ");
+					numChamps = sc.nextInt(); sc.nextLine();
+				}
+				
 				
 				String[] championships = new String[numChamps];
 				for(int i=0; i<numChamps; i++){
@@ -198,6 +225,12 @@ public class Main{
 			case 2:
 				System.out.print("Inserta los anios de experiencia del entrenador: ");
 				yearsXp = sc.nextInt(); sc.nextLine();
+				
+				while(yearsXp<0){
+					System.out.print("\nNo se deben ingresar numeros negativos en este campo\n ");
+					System.out.print("Inserta los anios de experiencia del entrenador: ");
+					yearsXp = sc.nextInt(); sc.nextLine();
+				}
 				
 				System.out.print("fue un jugador activo? si o no: ");
 				String pActivity = sc.nextLine();
@@ -433,10 +466,6 @@ public class Main{
 		return takenName;
 	}
 	
-	public static boolean findEmployeeOnTeam(Club clubx, String teamName, String playerId){
-		boolean alreadyIn = clubx.findEmployeeOnTeam(teamName, playerId);
-		return alreadyIn;
-	}
 	
 	public static void addAlignment(Club clubx){
 		
@@ -627,6 +656,180 @@ public class Main{
 			}
 		}else{
 			System.out.print("Este equipo no existe");
+		}
+	}
+	
+	public static void updateEmployee(Club clubx){
+		
+		int idType=0;
+		System.out.print("Inserta el id del empleado que quieres actualizar: ");
+		String id = sc.nextLine();
+		
+		boolean existingId = clubx.findId(id);
+		if(existingId){
+			int index = clubx.detectEmployee(id);
+			String userInfo = clubx.showEmployee(index);
+			System.out.print(userInfo);
+			System.out.print("\n");
+			
+			System.out.print("\nQue deseas cambiar?"+
+				"\n ** 1. Nombre"+
+				"\n ** 2. Identficador"+
+				"\n ** 3. Salario"+
+				"\n ** 4. Estado"+
+				"\n ** 5. Otro\n");
+			int option;
+			option = sc.nextInt(); sc.nextLine();
+			
+			while(option<1 || option>5){
+				System.out.print("\nOpcion invalida"+
+					"\nQue deseas cambiar?"+
+					"\n ** 1. Nombre"+
+					"\n ** 2. Identficador"+
+					"\n ** 3. Salario"+
+					"\n ** 4. Estado"+
+					"\n ** 5. Otro\n");
+					option = sc.nextInt(); sc.nextLine();
+			}
+			
+			switch(option){
+				case 1:
+					System.out.print("Inserta el nuevo nombre del empleado: ");
+					String newName = sc.nextLine();
+					clubx.updateName(id, newName);
+				break;
+				case 2:
+					System.out.print("Inserta el nuevo id del empleado: ");
+					String newId = sc.nextLine();
+					boolean existingIdentifier = clubx.findId(newId);
+					if(existingIdentifier){
+						System.out.print("Este id ya esta tomado");
+					}else{
+						clubx.updateId(id, newId);
+					}
+				break;
+				case 3:
+					System.out.print("Inserta el nuevo salario del empleado: ");
+					int newSalary = sc.nextInt(); sc.nextLine();
+					clubx.updateSalary(id, newSalary);
+				break;
+				case 4:
+					System.out.print("Inserta el nuevo estado del empleado, es activo? si o no: ");
+					String newState = sc.nextLine();
+					boolean newStateP;
+					if(newState.equalsIgnoreCase("si")){
+						newStateP = true;
+					}else{
+						newStateP = false;
+					}
+					clubx.updateState(id, newStateP);
+				break;
+				case 5:
+				
+					idType = clubx.getEmployeeType(id);
+					int optionT;
+					switch(idType){
+						case 1:
+							System.out.print("Que deseas cambiar?"+
+							"\n ** 1. Años de experiencia"+
+							"\n ** 2. Numero de campeonatos ganados");
+						break;
+						case 2:
+							System.out.print("Instance of asistent");
+						break;
+						case 3:
+							System.out.print("Que deseas cambiar?"+
+							"\n ** 1. Numero de camiseta"+
+							"\n ** 2. Goles marcados"+
+							"\n ** 3. Evaluacion promedio"+
+							"\n ** 4. Posicion\n");
+							optionT = sc.nextInt(); sc.nextLine();
+							
+							while(optionT<1 || optionT>4){
+								System.out.print("\nOpcion no valida\n");
+								System.out.print("\nQue deseas cambiar?"+
+								"\n ** 1. Numero de camiseta"+
+								"\n ** 2. Goles marcados"+
+								"\n ** 3. Evaluacion promedio"+
+								"\n ** 4. Posicion\n");
+							optionT = sc.nextInt(); sc.nextLine();
+							}
+							
+							switch(optionT){
+								case 1:
+									System.out.print("Inserta el nuevo numero de camiseta del jugador: ");
+									String newShirtN = sc.nextLine();
+									int numS = Integer.parseInt(newShirtN);
+									if(numS>0){
+										clubx.updateShirtN(id, newShirtN);
+									}else{
+										System.out.print("No se puede agregar un numero negativo");
+									}
+									
+								break;
+								case 2:
+									System.out.print("Inserta el nuevo numero de goles marcados del jugador : ");
+									int newGoals = sc.nextInt(); sc.nextLine();
+									if(newGoals>0){
+										clubx.updateGoals(id, newGoals);
+									}else{
+										System.out.print("No se puede agregar un numero negativo");
+									}
+								break;
+								case 3:
+									System.out.print("Inserta la nueva evaluacion promedio del jugador: ");
+									double newEvaAve = sc.nextDouble(); sc.nextLine();
+									if(newEvaAve>0){
+										clubx.updateEvaAve(id, newEvaAve);
+									}else{
+										System.out.print("No se puede agregar un numero negativo");
+									}
+								break;
+								case 4:
+									System.out.print("\nInserta la nueva posicion del jugador: "+ 
+									"\n 1. Delantero"+
+									"\n 2. Volante"+
+									"\n 3. Defensor"+
+									"\n 4. Portero");
+									int optionPos;
+									optionPos = sc.nextInt(); sc.nextLine();
+									String newPosition="";
+									
+									while(optionPos<1 || optionPos>4){
+										System.out.print("\nOpcion no valida\n");
+										System.out.print("\nInserta la nueva posicion del jugador: "+ 
+										"\n 1. Delantero"+
+										"\n 2. Volante"+
+										"\n 3. Defensor"+
+										"\n 4. Portero");
+										optionPos = sc.nextInt(); sc.nextLine();
+									}
+									switch(optionPos){
+										case 1:
+											newPosition = "DELANTERO";
+										break;
+										case 2:
+											newPosition = "VOLANTE";
+										break;	
+										case 3:
+											newPosition = "DEFENSOR";
+										break;
+										case 4:
+											newPosition = "PORTERO";
+										break;
+									}
+									
+									clubx.updatePosition(id, newPosition);
+									
+								break;
+								
+							}
+							
+						break;
+					}
+			}
+		}else{
+			System.out.print("Id no encontrado");
 		}
 	}
 	

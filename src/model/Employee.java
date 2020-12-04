@@ -12,7 +12,7 @@ public abstract class Employee{
 		this.name = name;
 		this.id = id;
 		this.salary = salary;
-		this. state = state;
+		this.state = state;	
 	}
 	
 	public String getId(){
@@ -35,5 +35,21 @@ public abstract class Employee{
 	
 	public int getSalary(){
 		return salary;
+	}
+	
+	public void setName(String name){
+		this.name = name;
+	}
+	
+	public void setId(String id){
+		this.id = id;
+	}
+	
+	public void setSalary(int salary){
+		this.salary = salary;
+	}
+	
+	public void setState(boolean state){
+		this.state = state;
 	}
 }

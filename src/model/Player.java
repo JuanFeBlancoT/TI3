@@ -44,6 +44,22 @@ public class Player extends Employee implements Calculations{
 		return evaAvearage;
 	}
 	
+	public void setShirtNumber(String shirtNumber){
+		this.shirtNumber = shirtNumber;
+	}
+	
+	public void setGoals(int goals){
+		this.goals = goals;
+	}
+	
+	public void setEvaAve(double evaAvearage){
+		this.evaAvearage = evaAvearage;
+	}
+	
+	public void setPosition(String positionX){
+		position=Position.valueOf(positionX);
+	}
+	
 	public double calculateMarketPrice(){
 		double price = 0;
 		

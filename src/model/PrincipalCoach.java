@@ -40,6 +40,10 @@ public class PrincipalCoach extends Coach implements Calculations{
 		return price;
 	} 
 	
+	public void setNumberTeams(int numberTeams){
+		this.numberTeams = numberTeams;
+	}
+		
 	public double calculateStarLevel(){
 		double levelS = 0;
 		levelS = 5 + ((double)getWonChampionships()/10);

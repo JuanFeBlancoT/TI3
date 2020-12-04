@@ -56,12 +56,6 @@ public class Club{
 		return found;
 	}
 	
-	public boolean findEmployeeOnTeam(String teamName, String playerId){
-		boolean alreadyIn = false;
-		
-		return alreadyIn;		
-	}
-	
 	public boolean findAlignment(String teamName, String dateA){
 		boolean existingAl = false;
 		boolean found = false;
@@ -331,4 +325,102 @@ public class Club{
 			}
 		}
 	}
-}
+	
+	public int getEmployeeType(String id){
+		boolean found = false;
+		int type =0;
+		for(int i=0;i<payroll.size() && !found;i++){
+			if(payroll.get(i).getId().equalsIgnoreCase(id)){
+				found = true;
+				if(payroll.get(i) instanceof PrincipalCoach){
+					type = 1;
+				}else if(payroll.get(i) instanceof TecAsistent){
+					type = 2;
+				}else if(payroll.get(i) instanceof Player){
+					type = 3;
+				}
+			}
+		}
+		return type;
+	}
+	
+	public void updateName(String id, String newId){
+		boolean found = false;
+		for(int i=0;i<payroll.size() && !found;i++){
+			if(payroll.get(i).getId().equalsIgnoreCase(id)){
+				found = true;
+				payroll.get(i).setName(newId);
+			}
+		}
+	}
+	
+	public void updateId(String id, String newId){
+		boolean found = false;
+		for(int i=0;i<payroll.size() && !found;i++){
+			if(payroll.get(i).getId().equalsIgnoreCase(id)){
+				found = true;
+				payroll.get(i).setId(newId);
+			}
+		}
+	}
+	
+	public void updateSalary(String id, int newSalary){
+		boolean found = false;
+		for(int i=0;i<payroll.size() && !found;i++){
+			if(payroll.get(i).getId().equalsIgnoreCase(id)){
+				found = true;
+				payroll.get(i).setSalary(newSalary);
+			}
+		}
+	}
+	
+	public void updateState(String id, boolean newState){
+		boolean found = false;
+		for(int i=0;i<payroll.size() && !found;i++){
+			if(payroll.get(i).getId().equalsIgnoreCase(id)){
+				found = true;
+				payroll.get(i).setState(newState);
+			}
+		}
+	}
+	
+	public void updateShirtN(String id, String newShirtN){
+		boolean found = false;
+		for(int i=0;i<payroll.size() && !found;i++){
+			if(payroll.get(i).getId().equalsIgnoreCase(id)){
+				found = true;
+				((Player)payroll.get(i)).setShirtNumber(newShirtN);
+			}
+		}
+	}
+	
+	public void updateGoals(String id, int newGoals){
+		boolean found = false;
+		for(int i=0;i<payroll.size() && !found;i++){
+			if(payroll.get(i).getId().equalsIgnoreCase(id)){
+				found = true;
+				((Player)payroll.get(i)).setGoals(newGoals);
+			}
+		}
+	}
+	
+	public void updateEvaAve(String id, double newEvaAve){
+		boolean found = false;
+		for(int i=0;i<payroll.size() && !found;i++){
+			if(payroll.get(i).getId().equalsIgnoreCase(id)){
+				found = true;
+				((Player)payroll.get(i)).setEvaAve(newEvaAve);
+			}
+		}
+	}
+	
+	public void updatePosition(String id, String newPosition){
+		boolean found = false;
+		for(int i=0;i<payroll.size() && !found;i++){
+			if(payroll.get(i).getId().equalsIgnoreCase(id)){
+				found = true;
+				((Player)payroll.get(i)).setPosition(newPosition);
+			}
+		}
+	}
+}	

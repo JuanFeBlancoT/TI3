@@ -18,6 +18,10 @@ public class TecAsistent extends Coach{
 		
 	}
 	
+	public void setActive(boolean activedP){
+		this.activedP = activedP;
+	}
+	
 	public String toString(){
 		
 		String message=super.toString();
