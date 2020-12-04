@@ -1,6 +1,6 @@
 package model;
 
-public class Player extends Employee{
+public class Player extends Employee implements Calculations{
 	
 	//atributes
 	private String shirtNumber;
@@ -29,8 +29,60 @@ public class Player extends Employee{
 		message+="\n ** Numero de camiseta: "+ shirtNumber +
 		"\n ** Cantidad de goles: "+ goals +
 		"\n ** Calificacion promedio: "+ evaAvearage +
-		"\n ** Posicion: "+ position+"\n";
+		"\n ** Posicion: "+ position+
+		"\n ** Precio mercado: "+ calculateMarketPrice()+
+		"\n ** Nivel como estrella: "+ calculateStarLevel()+"\n";
 		
 		return message;
+	}
+	
+	public int getGoals(){
+		return goals;
+	}
+	
+	public double getEvaAvearage(){
+		return evaAvearage;
+	}
+	
+	public double calculateMarketPrice(){
+		double price = 0;
+		
+		switch(position){
+			case PORTERO:
+				price = (getSalary()*12)+(getEvaAvearage()*150);
+			break;
+			case DEFENSOR:
+				price = (getSalary()*13)+(getEvaAvearage()*125)+(getGoals()*100);
+			break;
+			case VOLANTE:
+				price = (getSalary()*14)+(getEvaAvearage()*135)+(getGoals()*125);
+			break;
+			case DELANTERO:
+				price = (getSalary()*15)+(getEvaAvearage()*145)+(getGoals()*150);
+			break;
+		}
+		
+		return price;
+	} 
+	
+	public double calculateStarLevel(){
+		double levelS = 0;
+		
+		switch(position){
+			case PORTERO:
+				levelS = getEvaAvearage()*0.9;
+			break;
+			case DEFENSOR:
+				levelS = (getEvaAvearage()*0.9)+((double)getGoals()/100);
+			break;
+			case VOLANTE:
+				levelS = (getEvaAvearage()*0.9)+((double)getGoals()/90);
+			break;
+			case DELANTERO:
+				levelS = (getEvaAvearage()*0.9)+((double)getGoals()/80);
+			break;
+		}
+		
+		return levelS;
 	}
 }

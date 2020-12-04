@@ -10,6 +10,10 @@ public class Coach extends Employee{
 		this.yearsXp = yearsXp;
 	}
 	
+	public int getYearsXp(){
+		return yearsXp;
+	}
+	
 	public String toString(){
 		
 		String message=super.toString();

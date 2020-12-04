@@ -1,6 +1,6 @@
 package model;
 
-public class PrincipalCoach extends Coach{
+public class PrincipalCoach extends Coach implements Calculations{
 
 	//atributes
 	private int numberTeams;
@@ -24,9 +24,26 @@ public class PrincipalCoach extends Coach{
 		for(int i=0; i<nChampionships;i++){
 			message+="\n	* " + championships[i];
 		}
-		message+="\n";
+		message+="\n ** Precio mercado: "+calculateMarketPrice()+"\n";
 		
 		return message;
+	}
+	
+	public int getWonChampionships(){
+		return nChampionships;
+	}
+	
+	public double calculateMarketPrice(){
+		double price = 0;
+		price = (getSalary()*10)+(getYearsXp()*100)+(getWonChampionships()*50);
+		
+		return price;
+	} 
+	
+	public double calculateStarLevel(){
+		double levelS = 0;
+		levelS = 5 + ((double)getWonChampionships()/10);
+		return levelS;
 	}
 	
 }
