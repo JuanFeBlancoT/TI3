@@ -34,6 +34,10 @@ public class Team{
 		return name;
 	}
 	
+	public void setName(String name){
+		this.name = name;
+	}
+	
 	public boolean findPlayer(String playerId){
 		boolean found = false;
 		for(int i=0;i<template.length && !found;i++){

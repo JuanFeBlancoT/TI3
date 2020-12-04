@@ -30,11 +30,13 @@ public class Main{
 			"\n 6. Agregar formacion a la alineacion de un equipo"+
 			"\n 7. Mostrar organizacion de los jugadores en un vestidor"+
 			"\n 8. Mostrar organizacion de los entrenadores en oficinas"+
-			"\n 12. Mostrar un empleado"+
-			"\n 13. Mostrar un equipo"+
-			"\n 14. Mostrar empleados"+
-			"\n 15. Mostrar equipos"+
-			"\n 16. Salir");
+			"\n 9. Actualizar equipo"+
+			"\n 10. Actualizar empleado"+
+			"\n 11. Mostrar un empleado"+
+			"\n 12. Mostrar un equipo"+
+			"\n 13. Mostrar empleados"+
+			"\n 14. Mostrar equipos"+
+			"\n 15. Salir");
 			
 			int option = sc.nextInt(); sc.nextLine();
 			
@@ -74,19 +76,25 @@ public class Main{
 			case 8:
 					organizeCoaches(club1);
 			break;
-			case 12:
+			case 9:
+					updateTeam(club1);
+			break;
+			case 10:
+					//organizeCoaches(club1);
+			break;
+			case 11:
 					showEmployee(club1);
 			break;
-			case 13:
+			case 12:
 					showTeam(club1);
 			break;
-			case 14:
+			case 13:
 					showEmployees(club1, numEmployees);
 			break;
-			case 15:
+			case 14:
 					showTeams(club1, numTeams);
 			break;
-			case 16:
+			case 15:
 					menu = false;
 			break;
 
@@ -599,6 +607,27 @@ public class Main{
 			System.out.print("El equipo no existe");
 		}
 		System.out.print(message);
+	}
+	
+	public static void updateTeam(Club clubx){
+		
+		System.out.print("Inserta el nombre del equipo que quieres actualizar: ");
+		String teamName = sc.nextLine();
+		
+		boolean existingTeam = clubx.findTeam(teamName);
+		if(existingTeam){
+			System.out.print("Inserta el nuevo nombre del equipo: ");
+			String newTeamName = sc.nextLine();
+			
+			boolean exist = clubx.findTeam(newTeamName);
+			if(exist){
+				System.out.print("Nombre tomado. Elige otro ");
+			}else{
+				clubx.updateTeam(teamName, newTeamName);
+			}
+		}else{
+			System.out.print("Este equipo no existe");
+		}
 	}
 	
 }

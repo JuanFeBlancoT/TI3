@@ -193,20 +193,20 @@ public class Club{
 		boolean validFormation = false;
 		boolean invalid = false;
 		//int[] formNums = new int[formText.length];
-	if(formText.length==3){
-		
-		for(int i=0;i<formText.length && !invalid;i++){
-			//formNums[i] = Integer.parseInt(formText[i]);
-			if(Integer.parseInt(formText[i])>8){
-				invalid = true;
-			}else{
-			sumFormation += Integer.parseInt(formText[i]);
+		if(formText.length==3){
+			
+			for(int i=0;i<formText.length && !invalid;i++){
+				//formNums[i] = Integer.parseInt(formText[i]);
+				if(Integer.parseInt(formText[i])>8){
+					invalid = true;
+				}else{
+				sumFormation += Integer.parseInt(formText[i]);
+				}
+			}
+			if(sumFormation==10){
+				validFormation = true;
 			}
 		}
-		if(sumFormation==10){
-			validFormation = true;
-		}
-	}
 		return validFormation;
 	}//end validFormation
 	
@@ -320,5 +320,15 @@ public class Club{
 			}
 		}
 		return message;
+	}
+	
+	public void updateTeam(String teamName, String newTeamName){
+		boolean found = false;
+		for(int i=0;i<teams.length && !found;i++){
+			if(teams[i]!=null && teams[i].getName().equalsIgnoreCase(teamName)){
+				found = true;
+				teams[i].setName(newTeamName);
+			}
+		}
 	}
 }
