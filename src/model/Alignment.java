@@ -29,6 +29,16 @@ public class Alignment{
 		formation.add(formationX);
 	}
 	
+	public boolean findFormation(String formationX){
+		boolean found = false;
+		for(int i=0;i<formation.size() && !found;i++){
+			if(formation.get(i).equalsIgnoreCase(formationX)){
+				found = true;
+			}
+		}
+		return found;
+	}
+	
 	public String selectFormation(String formationX){
 		String message="";
 		boolean found = false;
@@ -57,6 +67,13 @@ public class Alignment{
 		}
 		
 		message=showFormation(formationMatrix);
+		message+=("\n"+
+		"\n ** Delanteros: "+ numsFormation[2] +
+		"\n ** Volantes: "+ numsFormation[1] +
+		"\n ** Defensores: "+ numsFormation[0]);
+		
+		message+= "\n\n ** Tactica: " + tactic;
+		
 		return message;	
 		
 	}//end addFormation
@@ -69,6 +86,7 @@ public class Alignment{
 			}
 			message+="\n";
 		}
+		
 		return message;
 	} 
 	

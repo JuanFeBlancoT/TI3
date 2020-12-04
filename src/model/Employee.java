@@ -47,8 +47,12 @@ public abstract class Employee{
 		String message = ("\n**** Empleado ****"+
 		"\n ** Nombre: "+ name+ 
 		"\n ** Id: "+ id+
-		"\n ** Salario: "+ salary+
-		"\n ** Stado: "+ state);
+		"\n ** Salario: "+ salary);
+		if(state){
+			message+="\n ** Estado: Empleado activo";
+		}else{
+			message+="\n ** Estado: Empleado inactivo";
+		}
 		
 		return message;
 	}

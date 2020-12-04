@@ -43,7 +43,7 @@ public class PrincipalCoach extends Coach implements Calculations{
 	public String toString(){
 		
 		String message=super.toString();
-
+		
 		message+="\n ** Numero de equipos: "+ numberTeams;
 		
 		message+="\n ** Campeonatos ganados: ";

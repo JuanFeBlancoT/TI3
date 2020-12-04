@@ -154,6 +154,19 @@ public class Team{
 		return found;
 	}
 	
+	public boolean findFormation(String dateA, String formationX){
+		boolean found = false;
+		boolean exist = false;
+		
+		for(int i=0;i<alignments.size() && !found ;i++){
+			if(alignments.get(i).getDate().equalsIgnoreCase(dateA)){
+				found = true;
+				exist = alignments.get(i).findFormation(formationX);
+			}
+		}
+		return exist;
+	}
+	
 	public void addFormation(String dateA, String formationX){
 		boolean found = false;
 		for(int i=0;i<alignments.size() && !found ;i++){

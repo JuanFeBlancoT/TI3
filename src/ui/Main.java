@@ -30,18 +30,19 @@ public class Main{
 			"\n 6. Agregar formacion a la alineacion de un equipo"+
 			"\n 7. Mostrar organizacion de los jugadores en un vestidor"+
 			"\n 8. Mostrar organizacion de los entrenadores en oficinas"+
-			"\n 9. Actualizar equipo"+
-			"\n 10. Actualizar empleado"+
-			"\n 11. Mostrar un empleado"+
-			"\n 12. Mostrar un equipo"+
-			"\n 13. Mostrar empleados"+
-			"\n 14. Mostrar equipos"+
-			"\n 15. Salir");
+			"\n 9. Mostrar un empleado"+
+			"\n 10. Mostrar un equipo"+
+			"\n 11. Mostrar empleados"+
+			"\n 12. Mostrar equipos"+
+			"\n 13. Mostrar formacion"+
+			"\n 14. Actualizar equipo"+
+			"\n 15. Actualizar empleado"+
+			"\n 16. Salir");
 			
 			int option = sc.nextInt(); sc.nextLine();
 			
 			switch(option){
-				case 1:
+			case 1:
 					contractEmployee(club1);
 					numEmployees++;
 			break;
@@ -77,24 +78,27 @@ public class Main{
 					organizeCoaches(club1);
 			break;
 			case 9:
-					updateTeam(club1);
-			break;
-			case 10:
-					updateEmployee(club1);
-			break;
-			case 11:
 					showEmployee(club1);
 			break;
-			case 12:
+			case 10:
 					showTeam(club1);
 			break;
-			case 13:
+			case 11:
 					showEmployees(club1, numEmployees);
 			break;
-			case 14:
+			case 12:
 					showTeams(club1, numTeams);
 			break;
+			case 13:
+					showFormation(club1);
+			break;
+			case 14:
+					updateTeam(club1);
+			break;
 			case 15:
+					updateEmployee(club1);
+			break;
+			case 16:
 					menu = false;
 			break;
 
@@ -554,10 +558,15 @@ public class Main{
 		}else{
 			System.out.print("El equipo no existe");
 		}
+		
 		System.out.print(message);
+		
+		
 	}
 	
 	public static void showFormation(Club clubx){
+		String message="";
+		
 		System.out.print("Inserta en nombre del equipo del cual deseas ver una formacion: ");
 		String teamName = sc.nextLine();
 		
@@ -570,12 +579,12 @@ public class Main{
 			if(existingAlign){
 				System.out.print("Inserta la alineacion de la siguiente forma: n-n-n de la misma forma en la que fue registrada ");
 				String formationX = sc.nextLine();
-				boolean validFormation = clubx.validateFormation(formationX);
+				boolean validFormation = clubx.findFormation(teamName, dateA, formationX);
 				
 				if(validFormation){
-					clubx.showFormation(teamName, dateA, formationX);
+					message = clubx.showFormation(teamName, dateA, formationX);
 				}else{
-					System.out.print("Formacion invalida ");
+					System.out.print("Formacion no registrada ");
 				}
 			}else{
 				System.out.print("No se hallan alineaciones atribuidas a esta fecha");
@@ -584,6 +593,7 @@ public class Main{
 			System.out.print("El equipo no existe");
 		}
 		
+		System.out.print(message);
 	}
 	
 	public static void organizePlayers(Club clubx){
@@ -906,7 +916,7 @@ public class Main{
 											keepAsking = false;
 										}
 					
-									}//end coso
+									}
 									
 									clubx.updateExpertises(id, expertises);
 								break;

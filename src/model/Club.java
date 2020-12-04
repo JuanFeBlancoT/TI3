@@ -81,6 +81,19 @@ public class Club{
 		return found;
 	}
 	
+	public boolean findFormation(String teamName, String dateA, String formationX){
+		boolean found = false;
+		boolean exist = false;
+		
+		for(int i=0;i<teams.length && !found;i++){
+			if(teams[i]!=null && teams[i].getName().equalsIgnoreCase(teamName)){
+				found = true;
+				exist = teams[i].findFormation(dateA, formationX);
+			}
+		}
+		return exist;
+	}
+	
 	public void addEmployeeToTeam(String teamName, String playerId){
 		
 		Employee employeeX = null;
