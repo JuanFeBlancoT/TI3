@@ -3,13 +3,13 @@ import java.util.*;
 
 public class Alignment{
 	//constants
-	private final int ROWS = 10;
-	private final int COLS = 7;
+	private final int ROWS = 10;				//Rows of the formation matrix
+	private final int COLS = 7;					//Columns of the formation matrix
 	
 	//atributes
-	private String date;
-	private ArrayList <String> formation;
-	private int[][] formationMatrix;
+	private String date;						//The date of the alignment
+	private ArrayList <String> formation;		//arraylist with the String that contains the formation
+	private int[][] formationMatrix;			//Is the matrix of the formation
 	//relations
 	private Tactic tactic;
 	

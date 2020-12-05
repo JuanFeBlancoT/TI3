@@ -3,9 +3,9 @@ package model;
 public class TecAsistent extends Coach{
 
 	//atributes
-	private boolean activedP;
+	private boolean activedP;			//A boolean that determines if the technical assistent was a player in the past
 	//relations
-	private Expertise[] listExpertise;
+	private Expertise[] listExpertise;	//The list of expertises of the technical assistent
 	
 	/**
 	* TecAsistent: Constructor of TecAsistent <br>

@@ -3,12 +3,12 @@ package model;
 public class Player extends Employee implements Calculations{
 	
 	//atributes
-	private String shirtNumber;
-	private int goals;
-	private double evaAvearage;
+	private String shirtNumber;			//Shirt number of the player
+	private int goals;					//The amount of goals the player has made in the club
+	private double evaAvearage;			//The avearage evaluation of the player
 	
 	//relations
-	private Position position;
+	private Position position;			//The player position
 	
 	/**
 	* Player: Constrctor of Player <br>

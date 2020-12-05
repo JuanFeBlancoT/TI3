@@ -3,14 +3,14 @@ import java.util.*;
 
 public class Team{
 	//constants
-	private final int MAX_TEC_ASIS = 3;
-	private final int MAX_PLAYERS = 25;
+	private final int MAX_TEC_ASIS = 3;			//Maximun number of techincal asistents
+	private final int MAX_PLAYERS = 25;			//Maximun number of players
 	//atributes
-	private String name;
-	private int[][] changeRoomLayout;
-	private int asignedChangeR;
+	private String name;						//name of the team
+	private int[][] changeRoomLayout;			//matrix with the shirtnumber of the players
+	private int asignedChangeR;					//A number that defines if the team has the big or small changeroom
 	//relations
-	private PrincipalCoach principalCoach;
+	private PrincipalCoach principalCoach;		
 	private TecAsistent[] tecAsistents;
 	private Player[] template;
 	private ArrayList <Alignment> alignments;

@@ -10,9 +10,9 @@ public class Main{
 	public static void main (String[] args){
 		
 		//atributes
-		boolean menu = true;
-		int numEmployees = 0;
-		int numTeams = 0;
+		boolean menu = true; 		//Determines if the menu keeps running
+		int numEmployees = 0; 		//The amount of employees created
+		int numTeams = 0;			//The amount of teams crated
 		
 		//Initialize Club
 		Club club1 = createClub();
@@ -1134,7 +1134,7 @@ public class Main{
 	* <b> pos </b> <br>
 	* @param clubx The club
 	* @param numEmployees current number of employees
-	* @param numTeams current number of teams
+	* @param numTeams current number of teams	
 	*/
 	public static void showAll(Club clubx, int numEmployees, int numTeams){
 		String message="";

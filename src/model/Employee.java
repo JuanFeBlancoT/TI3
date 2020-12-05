@@ -3,10 +3,10 @@ package model;
 public abstract class Employee{
 	
 	//atributes
-	private String name;
-	private String id;
-	private int salary;
-	private boolean state;
+	private String name;			//The name of the employee
+	private String id;				//The id of the employee
+	private int salary;				//The salary of the employee
+	private boolean state;			//The state of the employee
 	
 	/**
 	* Employee: Constructor of Employee <br>

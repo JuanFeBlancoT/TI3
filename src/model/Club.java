@@ -4,22 +4,22 @@ import java.util.*;
 
 public class Club{
 	//constants
-	public final int MAX_TEAMS = 2;
-	public final int ROWSA = 7;
-	public final int COLSB = 6;
-	public final int OFFICE_ROW = 6;
+	public final int MAX_TEAMS = 2;			//Maximun number of teams
+	public final int ROWSA = 7;				//Row and column size of changeroomA and row size of changeRoomB
+	public final int COLSB = 6;				//Columns of changeRoomB
+	public final int OFFICE_ROW = 6;		//Offcie row and column size
 	
 	//Atributes
-	private String name;
-	private String fundationD;
-	private String nit;
+	private String name;					//name of the club
+	private String fundationD;				//fundation date of the club
+	private String nit;						//nit of the club
 	
 	//Relations
-	private Player[][] changeRoomA;
-	private Player[][] changeRoomB;
-	private Employee[][] offices;
-	private Team[] teams;
-	ArrayList <Employee> payroll;
+	private Player[][] changeRoomA;			//matrix of players from one team
+	private Player[][] changeRoomB;			//matrix of players from another team
+	private Employee[][] offices;			//matrix of coaches
+	private Team[] teams;					
+	ArrayList <Employee> payroll;			
 
 	
 	/**

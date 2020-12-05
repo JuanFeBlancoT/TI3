@@ -1,9 +1,9 @@
 package model;
 
-public class Coach extends Employee{
+public abstract class Coach extends Employee{
 	
 	//atributes
-	private int yearsXp;
+	private int yearsXp;		//Years of experiencie of the coach
 	
 	/**
 	* Coach: Constructor of Coach <br>

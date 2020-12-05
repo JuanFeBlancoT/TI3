@@ -3,9 +3,9 @@ package model;
 public class PrincipalCoach extends Coach implements Calculations{
 
 	//atributes
-	private int numberTeams;
-	private String[] championships;
-	private int nChampionships;
+	private int numberTeams;				//number of teams that the coach have had
+	private String[] championships;			//Array with the number of all the won championships
+	private int nChampionships;				//Number of won championships
 	
 	/**
 	* Employee: Constructor of Employee <br>
