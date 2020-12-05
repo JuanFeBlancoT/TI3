@@ -903,7 +903,7 @@ public class Main{
 						break;
 						case 2:
 							System.out.println("Que deseas cambiar?"+
-							"\n ** 1. Años de experiencia"+
+							"\n ** 1. Anios de experiencia"+
 							"\n ** 2. Ha sido un jugador activo"+
 							"\n ** 3. Experticias");
 							optionT = sc.nextInt(); sc.nextLine();
@@ -911,7 +911,7 @@ public class Main{
 							while(optionT<1 || optionT>4){
 								System.out.print("\nOpcion no valida\n");
 								System.out.println("Que deseas cambiar?"+
-								"\n ** 1. Años de experiencia"+
+								"\n ** 1. Anios de experiencia"+
 								"\n ** 2. Ha sido un jugador activo"+
 								"\n ** 3. Experticias");
 								optionT = sc.nextInt(); sc.nextLine();
@@ -952,6 +952,10 @@ public class Main{
 									boolean keepAsking =false;
 									if(hasExpert.equalsIgnoreCase("si")){
 										keepAsking = true;
+									}else{
+										for(int j=0;j<expertises.length;j++){
+											expertises[j] = null;
+										}
 									}
 					
 									for(int i=0; i<expertises.length && keepAsking ;i++){

@@ -47,10 +47,21 @@ public class TecAsistent extends Coach{
 	* @param listExpert Is the new array of expertises of the technical assistent
 	*/
 	public void setExpertises(String[] listExpert){
-		for(int i=0;i<listExpertise.length && listExpert[i]!=null;i++){
-			listExpertise[i]= Expertise.valueOf(listExpert[i]);
+		int countNulls=0;
+		for(int i=0;i<listExpertise.length;i++){
+			if(listExpert[i]==null){
+				countNulls++;
+			}
 		}
-	}
+		
+		if(countNulls==6){
+				listExpertise[0] = null;
+		}else{
+			for(int j=0;j<listExpertise.length && listExpert[j]!=null;j++){
+				listExpertise[j]= Expertise.valueOf(listExpert[j]);
+			}
+		}
+	}//end setExpertises
 	
 	/**
 	* toString: Shows the information of the technical assistent <br>
