@@ -37,7 +37,8 @@ public class Main{
 			"\n 13. Mostrar formacion"+
 			"\n 14. Actualizar equipo"+
 			"\n 15. Actualizar empleado"+
-			"\n 16. Salir");
+			"\n 16. Mostrar todo"+
+			"\n 17. Salir");
 			
 			int option = sc.nextInt(); sc.nextLine();
 			
@@ -99,6 +100,9 @@ public class Main{
 					updateEmployee(club1);
 			break;
 			case 16:
+					showAll(club1, numEmployees, numTeams);
+			break;
+			case 17:
 					menu = false;
 			break;
 
@@ -1123,5 +1127,35 @@ public class Main{
 			System.out.print("Id no encontrado");
 		}
 	}//end updateEmployee
+	
+	/**
+	* showAll: Shows the information of the club <br>
+	* <b> pre </b> the index must be within the size of the payroll arraylist<br>
+	* <b> pos </b> <br>
+	* @param clubx The club
+	* @param numEmployees current number of employees
+	* @param numTeams current number of teams
+	*/
+	public static void showAll(Club clubx, int numEmployees, int numTeams){
+		String message="";
+		
+		System.out.println("\n ********** EMPLEADOS **********\n");
+		showEmployees(clubx, numEmployees);
+		System.out.println("\n ********** EQUIPOS **********\n");
+		showTeams(clubx, numTeams);
+		System.out.println("\n ********** OFICINAS **********\n");
+		organizeCoaches(clubx);
+		System.out.println("\n ********** VESTIDORES **********\n");
+		if(numTeams==1){
+			message = clubx.showChangeroom(0);
+			System.out.println(message);
+		}else if(numTeams==2){
+			message = clubx.showChangeroom(0);
+			System.out.println(message);
+			System.out.println("\n"+"\n");
+			message = clubx.showChangeroom(1);
+			System.out.println(message);
+		}
+	}
 	
 }

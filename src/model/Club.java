@@ -330,6 +330,24 @@ public class Club{
 	}//end validFormation
 	
 	/**
+	* showChangeroom: Shows the changerooms <br>
+	* <b> pre </b> the index must be within the size of the payroll arraylist<br>
+	* <b> pos </b> <br>
+	* @param teamIndex team index that will show its changeroom
+	* @return message The string with the information
+	*/
+	public String showChangeroom(int teamIndex){
+		String message="";
+		if(teamIndex==0){
+			message = teams[teamIndex].organizePlayers(ROWSA,ROWSA);
+		}else{
+			message = teams[teamIndex].organizePlayers(ROWSA,COLSB);
+		}
+		
+		return message;
+	}
+	
+	/**
 	* organizePlayers: organizes players in a matrix leaving a space between them and displays it <br>
 	* <b> pre </b> <br>
 	* <b> pos </b> <br>
@@ -384,6 +402,13 @@ public class Club{
 		return message;
 	}
 	
+	/**
+	* showOffice: Show the information of office <br>
+	* <b> pre </b> the index must be within the size of the payroll arraylist<br>
+	* <b> pos </b> <br>
+	* @param coaches matric
+	* @return message The string with the information
+	*/
 	public String showOffice(Employee[][] coaches){
 		String message="";
 		
