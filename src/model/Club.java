@@ -23,7 +23,10 @@ public class Club{
 	/**
 	* Club: Its the constructor of the class Club <br>
 	* <b> pre </b> <br>
-	* <b> pos </b> It generates an array of employees<br>
+	* <b> pos </b> It generates an array of employees, teams and some matrix of changerooms and offices<br>
+	* @param name Is the name of the club
+	* @param fundationD Is the date of fundation of the club
+	* @param nit Is the Nit of the club
 	*/
 	public Club(String name, String fundationD, String nit){
 		this.name = name;
@@ -36,6 +39,13 @@ public class Club{
 		offices=new Employee[OFFICE_ROW][OFFICE_ROW];
 	}
 	
+	/**
+	* findId: Search the payroll and verifies if the given id matches the id of one of the employees and returns a boolean depending on wether thers a match or not <br>
+	* <b> pre </b> <br>
+	* <b> pos </b> <br>
+	* @param id Is the given id which will be compared with the rest
+	* @return found It is the value that determines if the id matched or not
+	*/
 	public boolean findId(String id){
 		boolean found = false;
 		for(int i=0;i<payroll.size() && !found;i++){

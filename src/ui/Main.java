@@ -131,6 +131,12 @@ public class Main{
 		return clubx;
 	}//end createClub
 	
+	/**
+	* contractEmployee: It creates an employee that can be one out of 3 types <br>
+	* <b> pre </b> <br>
+	* <b> pos </b> <br>
+	* @param clubx is the Club object
+	*/
 	public static void contractEmployee(Club clubx){
 		
 		boolean activityPlayer = false;
@@ -143,17 +149,18 @@ public class Main{
 		id = sc.nextLine();
 		//Confirm that the Id isnt already asigned to another employee
 		boolean takenId = false;
-		takenId = findId(clubx, id);
+		takenId = clubx.findId(id);
 		while(takenId){
 			System.out.print("\n **** ID TOMADO ****\n");
 			System.out.print("Inserta el id del empleado: ");
 			id = sc.nextLine();
-			takenId = findId(clubx, id);
+			takenId = clubx.findId(id);
 		}
 		
 		System.out.print("Inserta el salario del empleado: ");
 		int salary;
 		salary = sc.nextInt(); sc.nextLine();
+		//checks that the number is positive
 		while(salary<0){
 			System.out.print("\nNo se deben ingresar numeros negativos en este campo\n ");
 			System.out.print("Inserta el salario del empleado: ");
@@ -192,6 +199,7 @@ public class Main{
 			case 1:
 				System.out.print("Inserta los anios de experiencia del entrenador: ");
 				yearsXp = sc.nextInt(); sc.nextLine();
+				//checks that the number is positive
 				while(yearsXp<0){
 					System.out.print("\nNo se deben ingresar numeros negativos en este campo\n ");
 					System.out.print("Inserta los anios de experiencia del entrenador: ");
@@ -201,6 +209,7 @@ public class Main{
 				int numberTeams;
 				System.out.print("Inserta el numero de equipos que ha tenido a su cargo: ");
 				numberTeams = sc.nextInt(); sc.nextLine();
+				//checks that the number is positive
 				while(numberTeams<0){
 					System.out.print("\nNo se deben ingresar numeros negativos en este campo\n ");
 					System.out.print("Inserta el numero de equipos que ha tenido a su cargo: ");
@@ -210,14 +219,14 @@ public class Main{
 				int numChamps;
 				System.out.print("Inserta el numero de campeonatos conseguidos: ");
 				numChamps = sc.nextInt(); sc.nextLine();
-				
+				//checks that the number is positive
 				while(numChamps<0){
 					System.out.print("\nNo se deben ingresar numeros negativos en este campo\n ");
 					System.out.print("Inserta el numero de campeonatos conseguidos: ");
 					numChamps = sc.nextInt(); sc.nextLine();
 				}
 				
-				
+				//create an array of Strings based on the number of won championships and fill it
 				String[] championships = new String[numChamps];
 				for(int i=0; i<numChamps; i++){
 					System.out.print("Inserta el nombre del campeonato "+ (i+1) +": ");
@@ -229,7 +238,7 @@ public class Main{
 			case 2:
 				System.out.print("Inserta los anios de experiencia del entrenador: ");
 				yearsXp = sc.nextInt(); sc.nextLine();
-				
+				//checks that the number is positive
 				while(yearsXp<0){
 					System.out.print("\nNo se deben ingresar numeros negativos en este campo\n ");
 					System.out.print("Inserta los anios de experiencia del entrenador: ");
@@ -341,7 +350,7 @@ public class Main{
 				String position = "";
 				int pos;
 				pos = sc.nextInt(); sc.nextLine();
-				
+				//option verification
 					while(pos<1 || pos>4){
 						System.out.print("\n **** OPCION NO VALIDA ****\n");
 						System.out.println("Inserta la posicion"+
@@ -374,7 +383,13 @@ public class Main{
 		}
 	}//end contractEmployee
 	
-	
+	/**
+	* fireEmployee: It fires an employee from the employee arraylist and from any team team that has it <br>
+	* <b> pre </b> <br>
+	* <b> pos </b> <br>
+	* @param clubx is the Club object
+	* @param numTeams is the number of teams created
+	*/
 	public static void fireEmployee(Club clubx, int numTeams){
 		System.out.print("Inserta el Id del empleado que deseas despedir: ");
 		String firedId = sc.nextLine();
@@ -386,6 +401,14 @@ public class Main{
 		}
 	}
 	
+	/**
+	* confirmSelection: It determines if a selection is valid from a set of options <br>
+	* <b> pre </b> <br>
+	* <b> pos </b> <br>
+	* @param selection is the current selection, an int
+	* @param options An array of options
+	* @return choosen It determines wether or not the selection is valid or not
+	*/
 	public static boolean confirmSelection(int selection, int[] options){
 		
 		boolean stop=false;
@@ -398,6 +421,13 @@ public class Main{
 		return choosen;
 	}
 	
+	/**
+	* createTeam: It creates a team <br>
+	* <b> pre </b> <br>
+	* <b> pos </b> <br>
+	* @param clubx Is the Club object
+	* @return done Determines wether or not the team was created or not
+	*/
 	public static boolean createTeam(Club clubx){
 		boolean done = false;
 		System.out.print("Inserta el nombre del equipo: ");
@@ -414,17 +444,27 @@ public class Main{
 		
 	}
 	
+	/**
+	* addPlayerToTeam: It creates a team <br>
+	* <b> pre </b> <br>
+	* <b> pos </b> <br>
+	* @param clubx Is the Club object
+	* @param numTeams Is the amount of teams created up to that moment
+	*/
 	public static void addPlayerToTeam(Club clubx, int numTeams){
 		
 		boolean alreadyInTeam = false;
 		System.out.print("Inserta el nombre del equipo: ");
 		String teamName = sc.nextLine();
+		//Verify that the team exists
 		boolean existingTeam = clubx.findTeam(teamName);
 		if(existingTeam){
 				System.out.print("Inserta el id del empleado al que quieres agregar: ");
 				String playerId = sc.nextLine();
+				//verify that the id exists
 				boolean existingId = clubx.findId(playerId);
 				if(existingId){
+					//Determines if it is necesary to check the array of employees from other team or not before adding by considering the amount of teams created
 					if(numTeams==2){
 						alreadyInTeam = clubx.findPlayerOnTeam(playerId, teamName);
 					}					
@@ -444,6 +484,13 @@ public class Main{
 		
 	}
 	
+	/**
+	* showEmployees: It displays the information from all the employees <br>
+	* <b> pre </b> <br>
+	* <b> pos </b> <br>
+	* @param clubx Is the Club object
+	* @param numEmployees Is the amount of employees created
+	*/
 	public static void showEmployees(Club clubx, int numEmployees){
 		String message = "";
 		for(int i=0; i<numEmployees;i++){
@@ -452,36 +499,38 @@ public class Main{
 		}
 	}
 	
+	/**
+	* showTeams: It displays the information of all the teams created <br>
+	* <b> pre </b> <br>
+	* <b> pos </b> <br>
+	* @param clubx Is the Club object
+	* @param numTeams Is the amount of teams created
+	*/
 	public static void showTeams(Club clubx, int numTeams){
 		String message = "";
 		for(int i=0; i<numTeams;i++){
 			message = clubx.showTeam(i);
 			System.out.print("\n"+message+"\n");
 		}
-	}
+	}	
 	
-	public static boolean findId(Club clubx, String id){
-		boolean takenId = clubx.findId(id);
-		return takenId;
-	}
-	
-	public static boolean findTeam(Club clubx, String teamName){
-		boolean takenName = clubx.findTeam(teamName);
-		return takenName;
-	}
-	
-	
+	/**
+	* addAlignment: It adds a new alignment to a team <br>
+	* <b> pre </b> <br>
+	* <b> pos </b> <br>
+	* @param clubx Is the Club object
+	*/
 	public static void addAlignment(Club clubx){
 		
 		System.out.print("Inserta el nombre del equipo al que deseas agregar una alineacion: ");
 		String teamName = sc.nextLine();
-		
+		//verify that the team exists
 		boolean existingTeam = clubx.findTeam(teamName);
 		if(existingTeam){
 			System.out.print("Inserta la fecha de la alineacion: ");
 			String dateA = sc.nextLine();
 			boolean existingDate = clubx.findAlignment(teamName, dateA);
-			
+			//Verify that the date isnt already taken by another alignment
 			if(existingDate){
 				System.out.print("Esta fecha ya ha sido seleccionada. Escoge otra ");
 			}else{
@@ -495,7 +544,7 @@ public class Main{
 				
 				int option;
 				option = sc.nextInt(); sc.nextLine();
-				
+				//option verification
 				while(option>4 || option<1){
 				System.out.println("Inserta la tactica: "+
 				"\n 1. Posesion"+
@@ -529,21 +578,28 @@ public class Main{
 		
 	}//end addAlignment
 	
+	/**
+	* addFormation: It adds a formation to an alignment of a team <br>
+	* <b> pre </b> <br>
+	* <b> pos </b> <br>
+	* @param clubx Is the Club object
+	*/
 	public static void addFormation(Club clubx){
 		String message="";
 		
 		System.out.print("Inserta en nombre del equipo al que quieres agregar una formacion: ");
 		String teamName = sc.nextLine();
-		
+		//verifies that the team exists
 		boolean existingTeam = clubx.findTeam(teamName);
 		if(existingTeam){
 			System.out.print("Inserta la fecha de la alineacion: ");
 			String dateA = sc.nextLine();
-			
+			//verifies that the alignment exists
 			boolean existingAlign = clubx.findAlignment(teamName, dateA);
 			if(existingAlign){
 				System.out.print("Inserta la alineacion de la siguiente forma: n-n-n. Recuerda que la suma de los numeros insertados debe dar 10. ");
 				String formationX = sc.nextLine();
+				//validates that the string has only 3 parts, that non of them is greater that 7 and that their addition is 10
 				boolean validFormation = clubx.validateFormation(formationX);
 				
 				if(validFormation){
@@ -564,21 +620,31 @@ public class Main{
 		
 	}
 	
+	/**
+	* showTeams: It displays the information of a single formation <br>
+	* <b> pre </b> <br>
+	* <b> pos </b> <br>
+	* @param clubx Is the Club object
+	*/
 	public static void showFormation(Club clubx){
 		String message="";
 		
 		System.out.print("Inserta en nombre del equipo del cual deseas ver una formacion: ");
 		String teamName = sc.nextLine();
 		
+		//Validates that the team exists
 		boolean existingTeam = clubx.findTeam(teamName);
 		if(existingTeam){
 			System.out.print("Inserta la fecha de la alineacion: ");
 			String dateA = sc.nextLine();
 			
+			//validates that the alignment exists
 			boolean existingAlign = clubx.findAlignment(teamName, dateA);
 			if(existingAlign){
 				System.out.print("Inserta la alineacion de la siguiente forma: n-n-n de la misma forma en la que fue registrada ");
 				String formationX = sc.nextLine();
+				
+				//validates that the formation is equal to an pre-existing formation
 				boolean validFormation = clubx.findFormation(teamName, dateA, formationX);
 				
 				if(validFormation){
@@ -596,6 +662,12 @@ public class Main{
 		System.out.print(message);
 	}
 	
+	/**
+	* organizePlayers: It organizes the players of the team selected in their corresponding changeroom and displays it <br>
+	* <b> pre </b> <br>
+	* <b> pos </b> <br>
+	* @param clubx Is the Club object
+	*/
 	public static void organizePlayers(Club clubx){
 		String message="";
 		
@@ -613,11 +685,23 @@ public class Main{
 		System.out.print(message);
 	}
 	
+	/**
+	* organizeCoaches: It organizes the coaches of the team selected in their corresponding office and displays it  <br>
+	* <b> pre </b> <br>
+	* <b> pos </b> <br>
+	* @param clubx Is the Club object
+	*/
 	public static void organizeCoaches(Club clubx){
 		String message=clubx.organizeCoaches();
 		System.out.print(message);
 	}
 	
+	/**
+	* showEmployee: It shows the information about a single employee <br>
+	* <b> pre </b> <br>
+	* <b> pos </b> <br>
+	* @param clubx Is the Club object
+	*/
 	public static void showEmployee(Club clubx){
 		String message="";
 		System.out.print("Inserta el id del jugador que quieres ver: ");
@@ -633,6 +717,12 @@ public class Main{
 		System.out.print(message);
 	}
 	
+	/**
+	* showTeam: It displays the information of a single team  <br>
+	* <b> pre </b> <br>
+	* <b> pos </b> <br>
+	* @param clubx Is the Club object
+	*/
 	public static void showTeam(Club clubx){
 		String message="";
 		System.out.print("Inserta el nombre del equipo que quieres ver: ");
@@ -648,6 +738,12 @@ public class Main{
 		System.out.print(message);
 	}
 	
+	/**
+	* updateTeam: It updates the name of a team  <br>
+	* <b> pre </b> <br>
+	* <b> pos </b> <br>
+	* @param clubx Is the Club object
+	*/
 	public static void updateTeam(Club clubx){
 		
 		System.out.print("Inserta el nombre del equipo que quieres actualizar: ");
@@ -669,6 +765,12 @@ public class Main{
 		}
 	}
 	
+	/**
+	* showTeam: It updates the information selected of an employee <br>
+	* <b> pre </b> <br>
+	* <b> pos </b> <br>
+	* @param clubx Is the Club object
+	*/
 	public static void updateEmployee(Club clubx){
 		
 		int idType=0;
@@ -1016,6 +1118,6 @@ public class Main{
 		}else{
 			System.out.print("Id no encontrado");
 		}
-	}
+	}//end updateEmployee
 	
 }

@@ -124,9 +124,9 @@ public class Team{
 		String message = ("\n *** EQUIPO *** " +
 		"\n ** Name: "+ name);
 		if(principalCoach!=null){
-			message+=("\n ** Coach principal: " +  principalCoach.getName());
+			message+=("\n ** Entrenador principal: " +  principalCoach.getName());
 		}else{
-			message+="\n ** Coach principal: PENDING";
+			message+="\n ** Entrenador principal: PENDING";
 		}
 		
 		for(int i=0; i<tecAsistents.length; i++){
